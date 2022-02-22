@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +17,12 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('index');
-});
+})->name('home');
+
+Auth::routes(['verify' => true]);
+
 
 Route::get('/shop', function () {
     return view('shop.shop');
@@ -30,3 +34,4 @@ Route::get('/product', function () {
 
 Auth::routes();
 
+Route::get('/admin/dashboard/', [AdminController::class, 'index'])->name('admin.dashboard');
