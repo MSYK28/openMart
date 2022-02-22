@@ -13,7 +13,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('index');
 })->middleware(['auth','verified'])->name('home');
 
