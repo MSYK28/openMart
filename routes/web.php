@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware(['auth','verified'])->name('home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+// Route::get('/dashoard', function () {
+//     return view('dashboard');
+// })->middleware(['auth','verified'])->name('dashboard');
+
+
+Route::get('/home', function () {
+     return view('home');
+ })->middleware(['auth','verified'])->name('home');
+
 
