@@ -1,25 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{--<section id="header">
-         <div>
-            <ul id="navbar">
-                <li><a class="active" href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('/shop') }}">Shop</a></li>
-                <li><a href="{{ url('/blog') }}">Blog</a></li>
-                <li><a href="{{ url('/about') }}">About</a></li>
-                <li><a href="{{ url('/contact') }}">Contact</a></li>
-                <li>
-                </li>
-                <li>
-                    <a href="{{ url('/cart') }}">
-                        <i class='bx bx-shopping-bag'></i>
-                    </a>
-                </li>
-            </ul>
-        </div> 
-    </section>--}}
-
     <section id="hero">
         <h4>Trade-in-offer</h4>
         <h2>Super Value Deals</h2>
@@ -374,80 +355,6 @@
             <h3>New trendy prints</h3>
         </div>
     </section>
-
-    <section id="newsletter" class="section-p1 section-m1">
-        <div class="newstext">
-            <h4>Sign up for newsletter</h4>
-            <p>Get Email updates about our latest shop and <span>special offers.</span></p>
-        </div>
-        <div class="form">
-            <input type="text" placeholder="Your email address">
-            <button class="normal">Sign Up</button>
-        </div>
-    </section>
-
-    <footer class="section-p1">
-        <div class="col">
-            <img src="assets/images/img/logo.png" alt="">
-            <h4>Contact</h4>
-            <p>
-                <strong>Address: </strong>
-                Strathmore University, Ole Sangale Link Road, Nairobi, P. O. BOX 41362,Kenya
-            </p>
-            <p>
-                <strong>Phone: </strong>
-                +254 (7)111 222 333
-            </p>
-            <p>
-                <strong>Hours: </strong>
-                Mon - Fri : 8:00 am - 17:00 pm
-            </p>
-            <div class="follow">
-                <h4>Follow Us</h4>
-                <div class="icon">
-                    <i class='bx bxl-meta'></i>
-                    <i class='bx bxl-instagram'></i>
-                    <i class='bx bxl-twitter'></i>
-                    <i class='bx bxl-youtube'></i>
-                    <i class='bx bxl-linkedin'></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <h4>About</h4>
-            <a href="{{ url('/about') }}">About us</a>
-            <a href="#">Delivery Information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms and Conditions</a>
-            <a href="{{ url('/contact') }}">Contact Us</a>
-        </div>
-
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="{{ url('/login') }}">Sign In</a>
-            <a href="{{ url('/register') }}">Sign Up</a>
-            <a href="{{ url('/cart') }}">Cart</a>
-            <a href="{{ url('/wishlist') }}">My Wishlist</a>
-            <a href="{{ url('/items') }}">Track My Order</a>
-            <a href="{{ url('/contact') }}">Help</a>
-        </div>
-
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="assets/images/img/pay/app.jpg" alt="">
-                <img src="assets/images/img/pay/play.jpg" alt="">
-            </div>
-            <p>Secured Payment Gateways</p>
-            <img src="assets/images/img/pay/pay.png" alt="">
-        </div>
-
-        <div class="copyright">
-            <p>2022, ABIDAS ECOMMERCE, HP LAB - STRATHMORE UNIVERSITY</p>
-        </div>
-    </footer>
 
     <script src="{{ asset('js/script.js') }}"></script>
 @endsection
