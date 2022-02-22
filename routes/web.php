@@ -13,16 +13,17 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('index');
 })->name('home');
-
-Auth::routes(['verify' => true]);
-
 
 Route::get('/shop', function () {
     return view('shop.shop');
@@ -32,6 +33,9 @@ Route::get('/product', function () {
     return view('shop.product');
 });
 
-Auth::routes();
+Route::get('/cart', function () {
+    return view('cart.cart');
+});
+
 
 Route::get('/admin/dashboard/', [AdminController::class, 'index'])->name('admin.dashboard');

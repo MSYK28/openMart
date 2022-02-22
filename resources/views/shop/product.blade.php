@@ -8,16 +8,16 @@
 
             <div class="small-img-group">
                 <div class="small-img-col">
-                    <img src="/assets/images/img/products/f1.jpg" width="100%" id="small-img" alt="">
+                    <img src="/assets/images/img/products/f1.jpg" width="100%" id="small-img0" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="/assets/images/img/products/f2.jpg" width="100%" id="small-img" alt="">
+                    <img src="/assets/images/img/products/f2.jpg" width="100%" id="small-img1" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="/assets/images/img/products/f3.jpg" width="100%" id="small-img" alt="">
+                    <img src="/assets/images/img/products/f3.jpg" width="100%" id="small-img2" alt="">
                 </div>
                 <div class="small-img-col">
-                    <img src="/assets/images/img/products/f4.jpg" width="100%" id="small-img" alt="">
+                    <img src="/assets/images/img/products/f4.jpg" width="100%" id="small-img3" alt="">
                 </div>
             </div>
         </div>
@@ -117,23 +117,7 @@
         </div>
     </section>
 
-    <script>
-        var MainImg = document.getElementById("MainImg");
-        var smallimg = document.getElementById("small-img");
-
-        smallimg[0].onclick = function(){
-            MainImg.src = smallimg[0].src;
-        }
-        smallimg[1].onclick = function () {
-            MainImg.src = smallimg[1].src;
-        }
-        smallimg[2].onclick = function () {
-            MainImg.src = smallimg[2].src;
-        }
-        smallimg[3].onclick = function () {
-            MainImg.src = smallimg[3].src;
-        }
-    </script>
-    <script src="/js/script.js"></script>
+    
+    {{-- <script src="/js/script.js"></script> --}}
 
 @endsection
