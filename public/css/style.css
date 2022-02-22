@@ -414,6 +414,36 @@ feature .fe-box img {
     font-size: 15px;
 }
 
+#banner4 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 80px;
+}
+
+#banner4 .banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    background-image: url('/assets/images/img/contact/calling3.jpg');
+    min-width: 30%;
+    height: 30vh;
+    background-size: cover;
+    background-position: center;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+#banner4 .banner-box2 {
+    background-image: url('/assets/images/img/contact/calling.jpg');
+}
+
+#banner4 .banner-box3 {
+    background-image: url('/assets/images/img/contact/calling2.jpg');
+}
+
 #newsletter {
     display: flex;
     justify-content: space-between;
@@ -478,6 +508,35 @@ footer .col {
     align-items: flex-start;
     margin-bottom: 20px;
 }
+#contact {
+    /* background-image: url({{asset("/assets/images/img/hero4.png")}}); */
+    background-image: url('/assets/images/img/contact/calling.jpg');
+    height: 90vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+#blog {
+    /* background-image: url({{asset("/assets/images/img/hero4.png")}}); */
+    background-image: url('/assets/images/img/banner/b16.jpg');
+    height: 90vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
 
 
 /* ======================= HEADERS ======================= */
