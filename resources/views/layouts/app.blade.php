@@ -45,30 +45,17 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto" id="navbar">
                         <li><a class="active" href="{{ url('/') }}">Home</a></li>
                         <li><a href="{{ url('/shop') }}">Shop</a></li>
                         <li><a href="{{ url('/blog') }}">Blog</a></li>
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
-                        <li>
-                        </li>
-                        <li>
-                            <a href="{{ url('/cart') }}">
-                                <i class='bx bx-shopping-bag'></i>
-                            </a>
-                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -91,12 +78,17 @@
                                 </div>
                             </li>
                         @endguest
+                        <li>
+                            <a href="{{ url('/cart') }}">
+                                <i class='bx bx-shopping-bag'></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

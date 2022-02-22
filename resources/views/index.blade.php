@@ -1,28 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ABIDAS</title>
-
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<body> --}}
-
-    <section id="header">
-        
-
-        {{-- <div>
+    {{--<section id="header">
+         <div>
             <ul id="navbar">
                 <li><a class="active" href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('/shop') }}">Shop</a></li>
@@ -37,8 +17,8 @@
                     </a>
                 </li>
             </ul>
-        </div> --}}
-    </section>
+        </div> 
+    </section>--}}
 
     <section id="hero">
         <h4>Trade-in-offer</h4>
@@ -471,7 +451,3 @@
 
     <script src="{{ asset('js/script.js') }}"></script>
 @endsection
-
-{{-- </body>
-
-</html> --}}
