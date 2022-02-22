@@ -27,7 +27,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- Abidas --}}
@@ -45,7 +45,7 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto" id="navbar">
+                    <ul class="navbar-nav ms-auto">
                         <li><a class="active" href="{{ url('/') }}">Home</a></li>
                         @auth
                         @if( Auth::user()->hasRole('administrator') )
@@ -60,7 +60,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
                         @else
@@ -72,7 +72,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -96,6 +96,80 @@
         <main>
             @yield('content')
         </main>
+
+        <section id="newsletter" class="section-p1 section-m1">
+            <div class="newstext">
+                <h4>Sign up for newsletter</h4>
+                <p>Get Email updates about our latest shop and <span>special offers.</span></p>
+            </div>
+            <div class="form">
+                <input type="text" placeholder="Your email address">
+                <button class="normal">Sign Up</button>
+            </div>
+        </section>
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="assets/images/img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p>
+                    <strong>Address: </strong>
+                    Strathmore University, Ole Sangale Link Road, Nairobi, P. O. BOX 41362,Kenya
+                </p>
+                <p>
+                    <strong>Phone: </strong>
+                    +254 (7)111 222 333
+                </p>
+                <p>
+                    <strong>Hours: </strong>
+                    Mon - Fri : 8:00 am - 17:00 pm
+                </p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class='bx bxl-meta'></i>
+                        <i class='bx bxl-instagram'></i>
+                        <i class='bx bxl-twitter'></i>
+                        <i class='bx bxl-youtube'></i>
+                        <i class='bx bxl-linkedin'></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>About</h4>
+                <a href="{{ url('/about') }}">About us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms and Conditions</a>
+                <a href="{{ url('/contact') }}">Contact Us</a>
+            </div>
+
+            <div class="col">
+                <h4>My Account</h4>
+                <a href="{{ url('/login') }}">Sign In</a>
+                <a href="{{ url('/register') }}">Sign Up</a>
+                <a href="{{ url('/cart') }}">Cart</a>
+                <a href="{{ url('/wishlist') }}">My Wishlist</a>
+                <a href="{{ url('/items') }}">Track My Order</a>
+                <a href="{{ url('/contact') }}">Help</a>
+            </div>
+
+            <div class="col install">
+                <h4>Install App</h4>
+                <p>From App Store or Google Play</p>
+                <div class="row">
+                    <img src="assets/images/img/pay/app.jpg" alt="">
+                    <img src="assets/images/img/pay/play.jpg" alt="">
+                </div>
+                <p>Secured Payment Gateways</p>
+                <img src="assets/images/img/pay/pay.png" alt="">
+            </div>
+
+            <div class="copyright">
+                <p>2022, ABIDAS ECOMMERCE, HP LAB - STRATHMORE UNIVERSITY</p>
+            </div>
+        </footer>
     </div>
 </body>
 

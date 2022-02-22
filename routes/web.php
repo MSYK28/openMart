@@ -13,6 +13,9 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::get('/', function () {
     return view('index');
@@ -21,10 +24,14 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 
+Route::get('/shop', function () {
+    return view('shop.shop');
+});
 
+Route::get('/product', function () {
+    return view('shop.product');
+});
 
-Route::get('/home', function () {
-     return view('home');
- })->middleware(['auth','verified'])->name('home');
+Auth::routes();
 
 Route::get('/admin/dashboard/', [AdminController::class, 'index'])->name('admin.dashboard');

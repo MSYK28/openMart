@@ -74,7 +74,7 @@ body {
 }
 
 /* ======================= HEADERS ======================= */
-.header {
+#header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -91,6 +91,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 #navbar li {
@@ -479,9 +483,150 @@ footer .col {
     margin-bottom: 20px;
 }
 
+footer .logo {
+    margin-bottom: 30px;
+}
 
-/* ======================= HEADERS ======================= */
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
 
-/* ======================= HEADERS ======================= */
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
 
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer .follow {
+    margin-top: 20px;
+}
+
+footer .follow i {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+    width: 50%;
+}
+
+footer .install img {
+    margin: 10px 0 15px 0;
+}
+
+footer .follow i:hover,
+footer a:hover{
+    color: #088178;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+}
+/* ======================= SHOP PAGE ======================= */
+#page-header {
+    background-image: url('/assets/images/img/banner/b1.jpg');
+    width: 100%;
+    height: 40vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 14px;
+
+}
+
+#page-header h2,
+#page-header p{
+    color: #fff;
+}
+
+#pagination {
+    text-align: center;
+}
+
+#pagination a {
+    text-decoration: none;
+    background-color: #088178;
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600px;
+}
+
+#pagination a i {
+    font-size: 16px;
+    font-weight: 600;
+}
+/* ======================= SINGLE PRODUCT ======================= */
+#prodetails {
+    display: flex;
+    margin-top: 20px;
+}
+
+#prodetails .single-pro-image {
+    width: 40%;
+    margin-right: 50px;
+}
+
+.small-img-group {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col {
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+#prodetails .single-pro-details {
+    width: 50%;
+    padding-top: 30px; 
+}
+
+#prodetails .single-pro-details h4 {
+    padding: 40px 0 20px 0;
+}
+
+#prodetails .single-pro-details h2 {
+    font-size: 26px;
+}
+
+#prodetails .single-pro-details select {
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+#prodetails .single-pro-details input {
+    width: 50px;
+    height: 47px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#prodetails .single-pro-details input:focus {
+    outline: none;
+}
+
+#prodetails .single-pro-details button {
+    background: #088178;
+    color: #fff;
+}
+
+#prodetails .single-pro-details span {
+    line-height: 25px;
+}
 /* ======================= HEADERS ======================= */
