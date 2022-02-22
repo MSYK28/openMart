@@ -15,13 +15,11 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/home', function () {
     return view('index');
-})->middleware(['auth','verified'])->name('home');
+})->name('home');
 
 Auth::routes(['verify' => true]);
 
-// Route::get('/dashoard', function () {
-//     return view('dashboard');
-// })->middleware(['auth','verified'])->name('dashboard');
+
 
 
 Route::get('/home', function () {
