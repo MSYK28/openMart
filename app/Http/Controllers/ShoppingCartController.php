@@ -35,6 +35,10 @@ class ShoppingCartController extends Controller
         return view('shop.product',['product'=>$product]);
     }
 
+    public function cart()
+    {
+        return view('cart.cart');
+    }
 
     public function add_to_cart($id)
     {
@@ -62,10 +66,7 @@ class ShoppingCartController extends Controller
             return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
-        public function cart(){
-
-            return view('hiquip.cart');
-        }
+    
 
         public function cart_remove(Request $request)
         {

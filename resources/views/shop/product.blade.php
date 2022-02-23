@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+    @foreach ($products as $product)
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
             <img src="/assets/images/img/products/f1.jpg" width="100%" id="MainImg" alt="">
@@ -24,8 +26,8 @@
 
         <div class="single-pro-details">
             <h6>Home/T-shirt</h6>
-            <h4>Men's T-shirt</h4>
-            <h2>Ksh. 1390</h2>
+            <h4>{{ $product->name }}</h4>
+            <h2>Ksh. {{ $product->price }}</h2>
             <select name="" id="">
                 <option value="">Select Size</option>
                 <option value="">Small</option>
@@ -42,6 +44,7 @@
             </span>
         </div>
     </section>
+    @endforeach
 
     <section id="product1" class="section-p1">
         <h2>Featured Products</h2>

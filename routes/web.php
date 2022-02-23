@@ -59,9 +59,7 @@ Route::prefix('admin/datatables')->group(
 });
 
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
-// Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
-Route::post('/p/create', [App\Http\Controllers\AdminController::class, 'addproduct'])->name('create.product');
-Route::get('/p', [App\Http\Controllers\AdminController::class, 'productCreate']);
+Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
 
 
 
