@@ -17,6 +17,9 @@ class ShoppingCartController extends Controller
     public function hiquipview(){
 
         $products = Items::all();
+        return view('shop.shop', compact('products'));
+
+        $products = Items::all();
         return view('shop.shop',['products'=>$products]);
     }
 

@@ -17,20 +17,20 @@ class Order extends Model
         'grand_total',
         'payment_method',
         'phone_number',
-        'location'
+        'location',
         'is_paid',
          'is_returned'
     ];
 
      protected $dates = [
 
-        'deleted_at'
+        'deleted_at',
         'datePaid'
     ];
 
     // public function items(){
 
     //     return $this->belongsToMany(Items::class, 'order_items','order_id','product_id')->withTimestamps();
-        
-    // }   
+
+    // }
 }

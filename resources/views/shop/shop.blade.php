@@ -8,7 +8,7 @@
 
     <section id="product1" class="section-p1">
         <div class="pro-container">
-            {{-- @foreach ($products as $product)
+            @foreach ($products as $product)
                 <div class="pro" onclick="window.location.href='/product';">
                     <img src="/assets/img/{{ $product->image }}" alt="">
                     <div class="des">
@@ -27,7 +27,7 @@
                         <i class='bx bx-cart-alt cart'></i>
                     </a>
                 </div>
-            @endforeach --}}
+            @endforeach
 
             <div class="pro">
                 <img src="/assets/images/img/products/f2.jpg" alt="">
