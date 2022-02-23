@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\ProductsController;
 
 
 /*
@@ -45,8 +46,17 @@ Route::get('/checkout', function () {
     return view('cart.checkout');
 });
 
+//ADMIN CONTROLLER
+Route::get('/admin/dashboard', [AdminController::class, 'index']);
+Route::get('/admin/create', [ProductsController::class, 'index']);
+Route::get('/admin/datatables', [ProductsController::class, 'datatables']);
+Route::get('/admin/datatables/orders', [ProductsController::class, 'orders']);
+Route::get('/admin/datatables/users', [ProductsController::class, 'users']);
 
-Route::get('/admin/dashboard/', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
+Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
+
+
 Route::get('/about', function () {
     return view('about');
 });

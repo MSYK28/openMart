@@ -40,22 +40,26 @@
         <h2>Featured Products</h2>
         <p>New Summer Collection</p>
         <div class="pro-container">
-            <div class="pro">
-                <img src="/assets/images/img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
+            {{-- @foreach ($products as $product)
+                <div class="pro" onclick="window.location.href='/product';">
+                    <img src="/assets/img/{{ $product->image }}" alt="">
+                    <div class="des">
+                        <span>{{ $product->category }}</span>
+                        <h5>{{ $product->name }}</h5>
+                        <div class="star">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <h4>Ksh. {{ $product->price }}</h4>
                     </div>
-                    <h4>Ksh. 780</h4>
+                    <a href="{{ route('add.to.cart', $product->id) }}" role="button">
+                        <i class='bx bx-cart-alt cart'></i>
+                    </a>
                 </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
+            @endforeach --}}
 
             <div class="pro">
                 <img src="/assets/images/img/products/f2.jpg" alt="">
@@ -188,22 +192,26 @@
         <h2>New Arrivals</h2>
         <p>New Modern Designs</p>
         <div class="pro-container">
-            <div class="pro">
-                <img src="/assets/images/img/products/n1.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
+            {{-- @foreach ($products as $product)
+                <div class="pro" onclick="window.location.href='/product';">
+                    <img src="/assets/img/{{ $product->image }}" alt="">
+                    <div class="des">
+                        <span>{{ $product->category }}</span>
+                        <h5>{{ $product->name }}</h5>
+                        <div class="star">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <h4>Ksh. {{ $product->price }}</h4>
                     </div>
-                    <h4>Ksh. 780</h4>
+                    <a href="{{ route('add.to.cart', $product->id) }}" role="button">
+                        <i class='bx bx-cart-alt cart'></i>
+                    </a>
                 </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
+            @endforeach --}}
 
             <div class="pro">
                 <img src="/assets/images/img/products/n2.jpg" alt="">

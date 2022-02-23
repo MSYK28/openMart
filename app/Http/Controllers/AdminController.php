@@ -19,11 +19,11 @@ class AdminController extends Controller
     
     public function __construct()
     {
-         $this->middleware(['auth','role:administrator']);
+         $this->middleware(['auth','role:user']);
     }
     public function index(){
 
-        return view('home');
+        return view('admin.home');
     }
 
     public function user_view(){
