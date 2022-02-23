@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +12,10 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/home', function () {
+    return view('index');
+});
 
 Auth::routes();
 Auth::routes(['verify' => true]);
@@ -37,5 +40,21 @@ Route::get('/cart', function () {
     return view('cart.cart');
 });
 
+Route::get('/checkout', function () {
+    return view('cart.checkout');
+});
+
 
 Route::get('/admin/dashboard/', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+

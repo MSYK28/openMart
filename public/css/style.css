@@ -188,7 +188,7 @@ feature .fe-box img {
     margin-bottom: 10px;
 }
 
-#feature .fe-box h6{
+#feature .fe-box h6 {
     display: inline-block;
     padding: 9px 8px 6px 6px;
     line-height: 1;
@@ -197,7 +197,7 @@ feature .fe-box img {
     background-color: #d1e8f2;
 }
 
-#feature .fe-box:nth-child(2) h6{
+#feature .fe-box:nth-child(2) h6 {
     background-color: #fddde4;
 }
 
@@ -241,7 +241,7 @@ feature .fe-box img {
     position: relative;
 }
 
-#product1 .pro:hover{
+#product1 .pro:hover {
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
 }
 
@@ -316,7 +316,7 @@ feature .fe-box img {
     padding: 10px 0;
 }
 
-#banner h2 span{
+#banner h2 span {
     color: #ef3636;
     font-size: 30px;
     padding: 10px 0;
@@ -406,7 +406,7 @@ feature .fe-box img {
     background-image: url('/assets/images/img/banner/b18.jpg');
 }
 
-#banner3 h2{
+#banner3 h2 {
     color: #fff;
     font-weight: 900;
     font-size: 15px;
@@ -416,6 +416,36 @@ feature .fe-box img {
     color: #ff0000;
     font-weight: 900;
     font-size: 15px;
+}
+
+#banner4 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 80px;
+}
+
+#banner4 .banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    background-image: url('/assets/images/img/contact/calling3.jpg');
+    min-width: 30%;
+    height: 30vh;
+    background-size: cover;
+    background-position: center;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+#banner4 .banner-box2 {
+    background-image: url('/assets/images/img/contact/calling.jpg');
+}
+
+#banner4 .banner-box3 {
+    background-image: url('/assets/images/img/contact/calling2.jpg');
 }
 
 #newsletter {
@@ -445,7 +475,7 @@ feature .fe-box img {
     color: #ffbd27;
 }
 
-#newsletter .form{
+#newsletter .form {
     display: flex;
     width: 40%;
 }
@@ -482,6 +512,35 @@ footer .col {
     align-items: flex-start;
     margin-bottom: 20px;
 }
+#contact {
+    /* background-image: url({{asset("/assets/images/img/hero4.png")}}); */
+    background-image: url('/assets/images/img/contact/calling.jpg');
+    height: 90vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+#blog {
+    /* background-image: url({{asset("/assets/images/img/hero4.png")}}); */
+    background-image: url('/assets/images/img/banner/b16.jpg');
+    height: 90vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
 
 footer .logo {
     margin-bottom: 30px;
@@ -525,7 +584,7 @@ footer .install img {
 }
 
 footer .follow i:hover,
-footer a:hover{
+footer a:hover {
     color: #088178;
 }
 
@@ -533,6 +592,7 @@ footer .copyright {
     width: 100%;
     text-align: center;
 }
+
 /* ======================= SHOP PAGE ======================= */
 #page-header {
     background-image: url('/assets/images/img/banner/b1.jpg');
@@ -547,7 +607,7 @@ footer .copyright {
 }
 
 #page-header h2,
-#page-header p{
+#page-header p {
     color: #fff;
 }
 
@@ -568,6 +628,7 @@ footer .copyright {
     font-size: 16px;
     font-weight: 600;
 }
+
 /* ======================= SINGLE PRODUCT ======================= */
 #prodetails {
     display: flex;
@@ -592,7 +653,7 @@ footer .copyright {
 
 #prodetails .single-pro-details {
     width: 50%;
-    padding-top: 30px; 
+    padding-top: 30px;
 }
 
 #prodetails .single-pro-details h4 {
@@ -629,4 +690,130 @@ footer .copyright {
 #prodetails .single-pro-details span {
     line-height: 25px;
 }
-/* ======================= HEADERS ======================= */
+
+/* ======================= CART PAGE ======================= */
+
+#cart table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    white-space: nowrap;
+}
+
+#cart table img {
+    width: 70px;
+}
+
+#cart table td:nth-child(1) {
+    width: 100px;
+    text-align: center;
+}
+
+#cart table td:nth-child(2) {
+    width: 150px;
+    text-align: center;
+}
+
+#cart table td:nth-child(3) {
+    width: 250px;
+    text-align: center;
+}
+
+#cart table td:nth-child(4),
+#cart table td:nth-child(5),
+#cart table td:nth-child(6) {
+    width: 150px;
+    text-align: center;
+}
+
+#cart table td:nth-child(5) input {
+    width: 70px;
+    padding: 10px 5px 10px 15px;
+}
+
+#cart table thead {
+    border: 1px solid #e2e9e1;
+    border-left: none;
+    border-right: none;
+}
+
+#cart table thead td {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 18px 0;
+}
+
+#cart table tbody tr td {
+    padding-top: 15px
+}
+
+#cart table tbody td {
+    font-size: 13px;
+}
+
+#cart-add {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#coupon {
+    width: 40%;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+#coupon h3,
+#subtotal h3 {
+    padding-bottom: 15px;
+}
+
+#coupon input {
+    padding: 10px 20px;
+    outline: none;
+    width: 60%;
+    margin-right: 10px;
+    border: 1px solid #e2e9e1;
+}
+
+#coupon button,
+#subtotal button {
+    background-color: #088178;
+    color: #fff;
+    padding: 12px 20px;
+}
+
+#subtotal,
+.subtotal {
+    width: 50%;
+    margin-bottom: 30px;
+    border: 1px solid #e2e9e1;
+    padding: 30px;
+}
+
+/* .subtotal {
+    width: 50%;
+    margin-bottom: 30px;
+    border: 1px solid #e2e9e1;
+    padding: 30px;
+} */
+
+#subtotal table,
+.subtotal table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#subtotal table td,
+.subtotal table td {
+    width: 50%;
+    border: 1px solid #e2e9e1;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.this-progress-bar {
+    padding-top: 10px;
+}
