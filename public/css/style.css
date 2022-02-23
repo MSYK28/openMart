@@ -527,7 +527,6 @@ footer .col {
 
 }
 #blog {
-    /* background-image: url({{asset("/assets/images/img/hero4.png")}}); */
     background-image: url('/assets/images/img/banner/b16.jpg');
     height: 90vh;
     width: 100%;
@@ -786,7 +785,7 @@ footer .copyright {
 
 #subtotal,
 .subtotal {
-    width: 50%;
+    width: 40%;
     margin-bottom: 30px;
     border: 1px solid #e2e9e1;
     padding: 30px;
