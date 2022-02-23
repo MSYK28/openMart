@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Voucher;
 
-class VoucherSeeder extends Seeder
+class Voucher extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class VoucherSeeder extends Seeder
      */
     public function run()
     {
-        Voucher::factory()->count(10)->create();
+        //
     }
 }
