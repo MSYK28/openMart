@@ -28,6 +28,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
 
 Route::get('/home', function () {
     return view('index');

@@ -20,6 +20,12 @@ class ShoppingCartController extends Controller
         return view('shop.shop',['products'=>$products]);
     }
 
+    public function hiquipviewindex(){
+
+        $products = Items::all();
+        return view('index',['products'=>$products]);
+    }
+
     public function hiquipview_product($id){
 
         $product = Items::find($id);
@@ -27,7 +33,8 @@ class ShoppingCartController extends Controller
     }
 
 
-    public function add_to_cart($id){
+    public function add_to_cart($id)
+    {
 
         // dd($product);
 
@@ -35,38 +42,41 @@ class ShoppingCartController extends Controller
         $cart = session()->get('cart', []);
 
         //add to cart
-        if(isset($cart[$id])) {
+        if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name "=> $product->name,
+                "name " => $product->name,
                 //'category'=>$product->category,
                 "price" => $product->price,
                 'quantity' => 1,
-                "image" => $product->item_imge
+                "image" => $product->item_img
             ];
 
+        }
 
             session()->put('cart', $cart);
             return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
 
+    }
         public function cart(){
 
             return view('hiquip.cart');
         }
 
-        public function cart_remove(){
+        public function cart_remove(Request $request)
+        {
 
-            if($request->id) {
+            if ($request->id) {
                 $cart = session()->get('cart');
-                if(isset($cart[$request->id])) {
+                if (isset($cart[$request->id])) {
                     unset($cart[$request->id]);
                     session()->put('cart', $cart);
                 }
                 session()->flash('success', 'Product removed successfully');
             }
-            public function cart_update(){
+        }
+            public function cart_update(Request $request){
 
                 if($request->id && $request->quantity){
                     $cart = session()->get('cart');
@@ -74,21 +84,10 @@ class ShoppingCartController extends Controller
                     session()->put('cart', $cart);
                     session()->flash('success', 'Cart updated successfully');
                 }
-                ]);
+
 
                 return back();
             }
-
-            public function cart_remove(){
-
-                if($request->id) {
-                    $cart = session()->get('cart');
-                    if(isset($cart[$request->id])) {
-                        unset($cart[$request->id]);
-                        session()->put('cart', $cart);
-                    }
-                    session()->flash('success', 'Product removed successfully');
-                }
 
                 public function checkout(){
 
@@ -100,7 +99,7 @@ class ShoppingCartController extends Controller
                     $cart = session()->get('cart');
                     foreach(session('cart') as $id => $details){
 
-                        $total += $details['price'] * $details['quantity']
+                        $total += $details['price'] * $details['quantity'];
 
       }
                     $checkout = $this->validate($request,
@@ -124,7 +123,7 @@ class ShoppingCartController extends Controller
 
                     //save order items
 
-                    foreach($cartItems as $item){
+                    foreach($cart as $item){
 
                         $order->items()->attach($item->id, ['order_id'=>$order->id,'quantity'=> $item->quantity ]);
                     }

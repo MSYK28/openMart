@@ -76,141 +76,29 @@
         <h2>New Arrivals</h2>
         <p>New Modern Designs</p>
         <div class="pro-container">
-            <div class="pro">
-                <img src="/assets/images/img/products/n1.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
+            @foreach ($products as $product)
+                <div class="pro" onclick="window.location.href='/product';">
+                    <img src="/assets/images/img/products/{{ $product->item_img }}" alt="">
+                    <div class="des">
+                        {{--                    <span>{{ $product->brand }}</span>--}}
+                        <h5>{{ $product->name }}</h5>
+                        <div class="star">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <h4>Ksh. {{ $product->price }}</h4>
                     </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
+                    {{--                <a href=""><i class='bx bx-cart-alt cart'></i></a>--}}
+                    <a href="{{ route('cart.add', $product->id) }}"
+                       class="btn btn-warning btn-block text-center" role="button">
+                        Add to cart
+                    </a>
 
-            <div class="pro">
-                <img src="/assets/images/img/products/n2.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
                 </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            <div class="pro">
-                <img src="/assets/images/img/products/n3.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            <div class="pro">
-                <img src="/assets/images/img/products/n4.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            <div class="pro">
-                <img src="/assets/images/img/products/n5.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            <div class="pro">
-                <img src="/assets/images/img/products/n6.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            <div class="pro">
-                <img src="/assets/images/img/products/n7.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            <div class="pro">
-                <img src="/assets/images/img/products/n8.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h4>Ksh. 780</h4>
-                </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
+            @endforeach
         </div>
     </section>
 

@@ -73,10 +73,11 @@
                         <li><a href="{{ url('/blog') }}">Blog</a></li>
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
+
                         <li>
                             <a href="{{ url('/cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
-                                Cart
+                                Cart {{ count((array) session('cart')) }}
                             </a>
                         </li>
                         <!-- Authentication Links -->
