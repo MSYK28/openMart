@@ -31,13 +31,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 </head>
 
@@ -64,9 +65,9 @@
                     <ul class="navbar-nav ms-auto">
                         <li><a class="active" href="{{ url('/') }}">Home</a></li>
                         @auth
-                        @if( Auth::user()->hasRole('administrator') )
-                        <li><a  href="{{ url('/admin/dashboard/') }}">Admin</a></li>
-                        @endif
+                            @if (Auth::user()->hasRole('user'))
+                                <li><a href="{{ url('/admin/dashboard/') }}">Admin</a></li>
+                            @endif
                         @endauth
                         <li><a href="{{ url('/shop') }}">Shop</a></li>
                         <li><a href="{{ url('/blog') }}">Blog</a></li>
@@ -93,8 +94,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                         document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -105,7 +107,7 @@
                                 </div>
                             </li>
                         @endguest
-                        
+
                     </ul>
                 </div>
             </div>

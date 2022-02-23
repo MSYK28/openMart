@@ -8,45 +8,26 @@
 
     <section id="product1" class="section-p1">
         <div class="pro-container">
-            @foreach ($products as $product)
-            <div class="pro" onclick="window.location.href='/product';">
-                <img src="/assets/images/img/products/f1.jpg" alt="">
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Cartoon Astronaut T-shirt</h5>
-                    <div class="star">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
+            {{-- @foreach ($products as $product)
+                <div class="pro" onclick="window.location.href='/product';">
+                    <img src="/assets/img/{{ $product->image }}" alt="">
+                    <div class="des">
+                        <span>{{ $product->category }}</span>
+                        <h5>{{ $product->name }}</h5>
+                        <div class="star">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <h4>Ksh. {{ $product->price }}</h4>
                     </div>
-                    <h4>Ksh. 780</h4>
+                    <a href="{{ route('add.to.cart', $product->id) }}" role="button">
+                        <i class='bx bx-cart-alt cart'></i>
+                    </a>
                 </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
-            </div>
-
-            @foreach ($products as $product)
-                <div class="trick_content">
-
-                    <div class="img_card pt-2 pb-4">
-                        <img src="/assets/img/{{ $product->image }}" alt="">
-                    </div>
-
-                    <div class="caption">
-                        <h4>{{ $product->name }}</h4>
-                        <p><strong>Category: </strong> {{ $product->category }}</p>
-                        {{-- <p>{{ $product->description }}</p> --}}
-                        <p><strong>Price: </strong> Ksh. {{ $product->price }}</p>
-                        <p class="btn-holder">
-                            <a href="{{ route('add.to.cart', $product->id) }}"
-                                class="btn btn-warning btn-block text-center" role="button">
-                                Add to cart
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            @endforeach
+            @endforeach --}}
 
             <div class="pro">
                 <img src="/assets/images/img/products/f2.jpg" alt="">
