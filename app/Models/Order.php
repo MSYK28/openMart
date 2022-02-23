@@ -25,12 +25,16 @@ class Order extends Model
      protected $dates = [
 
         'deleted_at',
-        'datePaid'
-    ];
+         'datePaid'
+     ];
 
     // public function items(){
+    public function items(){
 
-    //     return $this->belongsToMany(Items::class, 'order_items','order_id','product_id')->withTimestamps();
+        //     return $this->belongsToMany(Items::class, 'order_items','order_id','product_id')->withTimestamps();
+        return $this->belongsToMany(Items::class, 'order_items','order_id','product_id')->withTimestamps();
 
-    // }
+        // }
+    }
+
 }
