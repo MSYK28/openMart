@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Products;
+use App\Models\Items;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -17,10 +17,16 @@ class ShoppingCartController extends Controller
     public function hiquipview(){
 
         $products = Items::all();
-        return view('hiquip.hiquipview',['products'=>$products]);
+        return view('shop.shop',['products'=>$products]);
     }
 
-    public function add_to_cart(Products $product){
+    public function hiquipview_product($id){
+
+        $product = Items::find($id);
+        return view('shop.product',['product'=>$product]);
+    } 
+
+    public function add_to_cart(Items $product){
 
        // dd($product);
 
@@ -65,6 +71,8 @@ class ShoppingCartController extends Controller
     }
     public function checkout(){
 
-        return view('hiquip.checkout');
+        return view('cart.checkout');
     }
+
+    
 }
