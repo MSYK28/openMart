@@ -17,31 +17,28 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-Auth::routes(['verify' => true]);
 
 Route::get('/home', function () {
     return view('index');
 });
 
-// Route::get('/home', function () {
-//     return view('index');
-// })->name('home');
+Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('index');
 });
-
 Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
+
+Route::get('/home', function () {
+    return view('index');
+})->name('home');
+
 
 //SHOPPING CONTROLLER
-Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop.shop');
+Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop');
 Route::get('/product/{id}', [ShoppingCartController::class, 'hiquipview_product'])->name('shop.product');
-Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
-Route::get('cart', [ShoppingCartController::class, 'cart'])->name('cart.cart');
-Route::get('add-to-cart/{id}', [ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [ShoppingCartController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [ShoppingCartController::class, 'remove'])->name('remove.from.cart');
+Route::get('/add_to_cart/{product}/', [ShoppingCartController::class, 'add_to_cart'])->name('cart.add');
 
 Route::get('/cart', function () {
     return view('cart.cart');
@@ -62,9 +59,10 @@ Route::prefix('admin/datatables')->group(
 });
 
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
-// Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
-Route::post('/p/create', [App\Http\Controllers\AdminController::class, 'addproduct'])->name('create.product');
-Route::get('/p', [App\Http\Controllers\AdminController::class, 'productCreate']);
+Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
+
+
+
 
 Route::get('/about', function () {
     return view('about');
