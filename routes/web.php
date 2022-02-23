@@ -28,12 +28,14 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
 
 Route::get('/home', function () {
     return view('index');
 })->name('home');
 
 
+//SHOPPING CONTROLLER
 Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop');
 Route::get('/product/{id}', [ShoppingCartController::class, 'hiquipview_product'])->name('shop.product');
 Route::get('/add_to_cart/{product}/', [ShoppingCartController::class, 'add_to_cart'])->name('cart.add');
@@ -49,14 +51,19 @@ Route::get('/checkout', function () {
 //ADMIN CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
-Route::get('/admin/datatables', [ProductsController::class, 'datatables']);
-Route::get('/admin/datatables/orders', [ProductsController::class, 'orders']);
-Route::get('/admin/datatables/users', [ProductsController::class, 'users']);
+Route::prefix('admin/datatables')->group(
+    function(){
+        Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
+        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable');
+        Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
+});
 
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
 // Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
 Route::post('/p/create', [App\Http\Controllers\AdminController::class, 'addproduct'])->name('create.product');
 Route::get('/p', [App\Http\Controllers\AdminController::class, 'productCreate']);
+
+
 
 
 Route::get('/about', function () {
@@ -70,4 +77,3 @@ Route::get('/blog', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-

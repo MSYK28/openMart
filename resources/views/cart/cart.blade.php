@@ -16,7 +16,8 @@
     </div>
 
     <section id="cart" class="section-p1">
-        <table width="100%">
+        @if(!empty(session('cart')))
+        <table width="100%">'
             <thead>
                 <tr>
                     <td>#</td>
@@ -30,54 +31,30 @@
             </thead>
 
             <tbody>
+            @php $total = 0 @endphp
+            @if (session('cart'))
+                @foreach (session('cart') as $id => $details)
+                    @php $total += $details['price'] * $details['quantity'] @endphp
                 <tr>
-                    <td>1</td>
+                    <td>{{ $details['id'] }}</td>
                     <td>
-                        <img src="/assets/images/img/products/f1.jpg" alt="">
+                        <img src="/assets/images/img/products/{{ $details['image'] }}" alt="">
                     </td>
-                    <td>Cartoon Astronaut shirt</td>
-                    <td>Ksh. 980</td>
+                    <td>{{ $details['name'] }}</td>
+                    <td>{{ $details['price'] }}</td>
                     <td><input type="number" value="1" name=""></td>
-                    <td>Ksh. 980</td>
+                    <td>{{ $details['price'] * $details['quantity'] }}</td>
                     <td>
-                        <a href="">
-                            <i class="fa fa-times-circle" aria-hidden="true">
-                            </i>
-                        </a>
+
+                            <button class="btn btn-danger remove-from-cart" aria-hidden="true">
+                                Remove
+                            </button>
+
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                        <img src="/assets/images/img/products/f1.jpg" alt="">
-                    </td>
-                    <td>Cartoon Astronaut shirt</td>
-                    <td>Ksh. 980</td>
-                    <td><input type="number" value="1" name=""></td>
-                    <td>Ksh. 980</td>
-                    <td>
-                        <a href="">
-                            <i class="fa fa-times-circle" aria-hidden="true">
-                            </i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                        <img src="/assets/images/img/products/f1.jpg" alt="">
-                    </td>
-                    <td>Cartoon Astronaut shirt</td>
-                    <td>Ksh. 980</td>
-                    <td><input type="number" value="1" name=""></td>
-                    <td>Ksh. 980</td>
-                    <td>
-                        <a href="">
-                            <i class="fa fa-times-circle" aria-hidden="true">
-                            </i>
-                        </a>
-                    </td>
-                </tr>
+
+                @endforeach
+                @endif
             </tbody>
 
             <tfoot>

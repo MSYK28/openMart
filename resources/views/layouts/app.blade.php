@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -65,7 +68,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li><a class="active" href="{{ url('/') }}">Home</a></li>
                         @auth
-                            @if (Auth::user()->hasRole('user'))
+                            @if (Auth::user()->hasRole('administrator'))
                                 <li><a href="{{ url('/admin/dashboard/') }}">Admin</a></li>
                             @endif
                         @endauth
@@ -73,10 +76,11 @@
                         <li><a href="{{ url('/blog') }}">Blog</a></li>
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
+
                         <li>
                             <a href="{{ url('/cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
-                                Cart
+                                Cart {{ count((array) session('cart')) }}
                             </a>
                         </li>
                         <!-- Authentication Links -->
@@ -191,6 +195,7 @@
             </div>
         </footer>
     </div>
+    @yield('scripts')
 </body>
 
 <script src="{{ asset('js/script.js') }}" defer></script>
