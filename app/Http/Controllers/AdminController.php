@@ -9,10 +9,11 @@ use App\Models\Items;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Intervention\Image\Facades\Image;
+//use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Session;
 use DB;
+use Image;
 
 class AdminController extends Controller
 {
@@ -86,32 +87,43 @@ class AdminController extends Controller
         $products = Items::all();
         return view('admin.add_hiquip')->withUser($user)->with(['products'=>$products]);
     }
+
+    public function productCreate()
+    {
+        return view('admin.create');
+    }
+    
     public function addproduct(Request $request){
 
         $this->validate($request,
-            ['product_name'=> 'required|max:255',
+            ['name'=> 'required|max:255',
             'category'=> 'required|max:255', 
-            'product_img'=>'required',
-             'description'=> 'required',
-              'price'=> 'required|integer', 
-              'quantity'=>'required|integer',
+            'brand'=>'required|max:255',
+            'image'=>'required',
+            'desc'=> 'required',
+            'price'=> 'required|integer', 
+            'qty'=>'required|integer',
             ]); 
         
 
-        if($request->hasFile('product_img')){
-            $product_img = $request->file('product_img');
+        if($request->hasFile('image')){
+            $product_img = $request->file('image');
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
-            Image::make($product_img)->resize(400,400)->save( public_path('/upload/hiquip/' . $filename ) );   
+            Image::make($product_img)->resize(400,400)->save( public_path('/assets/images/img/products/' . $filename ) );   
         }
+
+
         //store product
-       $product = Items::create([
-            'item_img'=> $filename,
-            'name'=> $request->product_name,
-            'category'=> $request->category,
-            'description'=> $request->description,
-            'price'=> $request->price,
-            'quantity'=>$request->quantity,
-        ]);
+        $product = Items::create([
+                'item_img'=> $filename,
+                'name'=> $request->name,
+                'category'=> $request->category,
+                'brand'=> $request->brand,
+                'description'=>  $request->desc,
+                'price'=> $request->price,
+                'quantity'=>$request->qty,
+            ]);
+       
 
        Session::flash('success','Product added successfull');
        return redirect()->back();
