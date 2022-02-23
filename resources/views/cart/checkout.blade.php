@@ -15,6 +15,8 @@
         </div>
     </div>
 
+    {{-- $request->route()->getName(); --}}
+
     <section id="cart-add" class="section-p1">
         <div id="subtotal" class="location">
             <table>
@@ -45,12 +47,25 @@
             </table>
         </div>
 
-        <div id="coupon">
-            <h3>Apply Coupon</h3>
+        <div id="coupon" class="subtotal">
+            <h6>Apply Coupon</h6>
             <div>
                 <input type="text" placeholder="Enter Your Coupon">
                 <button class="normal">Apply</button>
             </div>
+        </div>
+
+        <div class="subtotal">
+            <form action="" method="">
+                <h6><strong>Payment Method</strong></h6>
+                @csrf
+                <input type="radio" id="html" name="fav_language" value="MPESA">
+                <label for="mpesa">M-PESA</label><br>
+                <input type="radio" id="css" name="fav_language" value="CASH">
+                <label for="cash">CASH</label><br>
+                <input type="radio" id="javascript" name="fav_language" value="CARD">
+                <label for="card">VISA/CARD</label>
+            </form>
         </div>
 
         <div id="subtotal">
@@ -76,23 +91,6 @@
             <button class="normal">Complete Order</button>
         </div>
 
-        {{-- <div id="coupon" class="subtotal">
-            <h6><strong>Payment Options</strong></h6>
-            <table>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Option
-                    1
-                    <label class="form-check-label" for="radio1"></label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Option 2
-                    <label class="form-check-label" for="radio2"></label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" disabled>Option 3
-                    <label class="form-check-label"></label>
-                </div>
-            </table>
-        </div> --}}
+        
     </section>
 @endsection
