@@ -14,7 +14,7 @@ class Items extends Model
 
     protected $fillable = [
         'category',
-        'barnd',
+        'brand',
         'quantity',
         'item_img',
         'name',
