@@ -17,7 +17,7 @@ use Image;
 
 class AdminController extends Controller
 {
-    
+
     public function __construct()
     {
          $this->middleware(['auth','role:administrator']);
@@ -32,7 +32,7 @@ class AdminController extends Controller
         $user = Auth::user();
         //$users = User::withoutTrashed()->paginate(5);
         $trashes = User::onlyTrashed()->paginate(5);
-        $users = User::whereHas('roles', 
+        $users = User::whereHas('roles',
             function($q){
             $q->whereIn('name', ['user'])->orWhereIn('name', ['brand']);
         })->withoutTrashed()->paginate(5);
@@ -49,12 +49,12 @@ class AdminController extends Controller
 
         $this->validate($request,
             ['first_name'=> 'required|max:255',
-            'last_name'=> 'required|max:255', 
+            'last_name'=> 'required|max:255',
              'username'=> 'required|max:255',
               'email'=> 'required|email|unique:users|max:255',
-              'password'=> 'required|confirmed' 
+              'password'=> 'required|confirmed'
 
-            ]);     
+            ]);
         //store user
        $user = User::create([
             'name'=> $request->first_name,
@@ -92,24 +92,24 @@ class AdminController extends Controller
     {
         return view('admin.create');
     }
-    
+
     public function addproduct(Request $request){
 
         $this->validate($request,
             ['name'=> 'required|max:255',
-            'category'=> 'required|max:255', 
+            'category'=> 'required|max:255',
             'brand'=>'required|max:255',
             'image'=>'required',
             'desc'=> 'required',
-            'price'=> 'required|integer', 
+            'price'=> 'required|integer',
             'qty'=>'required|integer',
-            ]); 
-        
+            ]);
+
 
         if($request->hasFile('image')){
             $product_img = $request->file('image');
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
-            Image::make($product_img)->resize(400,400)->save( public_path('/assets/images/img/products/' . $filename ) );   
+            Image::make($product_img)->resize(400,400)->save( public_path('/assets/images/img/products/' . $filename ) );
         }
 
 
@@ -123,12 +123,12 @@ class AdminController extends Controller
                 'price'=> $request->price,
                 'quantity'=>$request->qty,
             ]);
-       
+
 
        Session::flash('success','Product added successfull');
        return redirect()->back();
-    
-   } 
+
+   }
 
     public function passwordEdit($id){
 
@@ -145,13 +145,13 @@ class AdminController extends Controller
 
         $this->validate($request,
             [
-             'password' => 'required|min:8|required_with:password_confirmation', 
+             'password' => 'required|min:8|required_with:password_confirmation',
 
             ]);
 
         $users = User::findOrFail($request->id);
         $users->password = Hash::make($request['password']);
-        
+
         $users->save();
 
         Session::flash('msg','Password Reset successfull');
@@ -197,9 +197,9 @@ class AdminController extends Controller
 
         $this->validate($request,
             [
-             'name'=> 'required|max:255', 
+             'name'=> 'required|max:255',
             //  'email'=> 'required|email|unique:users|max:255',
-                
+
 
             ]);
 
@@ -212,7 +212,7 @@ class AdminController extends Controller
 
         return redirect()->route('admin_user.view');
     }
-    
+
     //ShoppingCart
      public function orderView(){
 
@@ -247,11 +247,11 @@ class AdminController extends Controller
 
         $this->validate($request,
             ['product_name'=> 'required|max:255',
-            'category'=> 'required|max:255', 
+            'category'=> 'required|max:255',
              'description'=> 'required',
-              'price'=> 'required|integer', 
+              'price'=> 'required|integer',
 
-            ]); 
+            ]);
         if($request->hasFile('product_img')){
             $product_img = $request->file('product_img');
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
@@ -260,7 +260,7 @@ class AdminController extends Controller
         }
 
         $products = Items::findOrFail($request->id);
-        
+
        // $products->product_img= $filename;
         $products->name= $request->product_name;
         $products->category= $request->category;
@@ -283,14 +283,14 @@ class AdminController extends Controller
 
         $this->validate($request,
             ['id'=> 'required',
-            'is_paid'=> 'required', 
+            'is_paid'=> 'required',
              'is_returned'=> 'required',
               'payment_method'=> 'required',
-              'status'=>'required', 
+              'status'=>'required',
 
-            ]); 
+            ]);
         $orders = Order::findOrFail($request->id);
-        
+
        // $products->product_img= $filename;
         $orders->is_returned= $request->is_returned;
         $orders->is_paid= $request->is_paid;
@@ -301,7 +301,7 @@ class AdminController extends Controller
         Session::flash('msg','Order updated successfully');
         return redirect()->back();
     }
-   
+
      public function restore_hiquip($id){
 
         $products = Items::withTrashed()->findOrFail($id);

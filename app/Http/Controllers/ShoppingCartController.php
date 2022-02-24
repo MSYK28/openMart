@@ -25,6 +25,7 @@ class ShoppingCartController extends Controller
 
     public function hiquipviewindex(){
 
+
         $products = Items::all();
         return view('index',['products'=>$products]);
     }
@@ -66,7 +67,7 @@ class ShoppingCartController extends Controller
             return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
-    
+
 
         public function cart_remove(Request $request)
         {

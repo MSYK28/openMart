@@ -27,4 +27,5 @@ class Items extends Model
 
         'deleted_at'
     ];
+
 }
