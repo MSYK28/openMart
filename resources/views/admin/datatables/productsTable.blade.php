@@ -56,35 +56,36 @@
                                        </tr>
                                    </thead>
                                    <tbody>
-                                       <!-- @foreach ($products as $product) -->
+                                       @foreach ($products as $product)
                                            <tr>
                                                </th>
                                                <th scope="col"
                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                   <!-- <p>{{ $product->id }}</p> -->
+                                                   {{ $product->id }}
                                                </th>
                                                <th scope="col"
                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                   <!-- <img src="/assets/img/{{ $product->image }}" alt="" width="30" height="30"> -->
+                                                       <p><img src="/assets/images/img/products/{{ $product->item_img }}" alt="" width="30" height="30"></p>
+
                                                </th>
                                                <th scope="col"
                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                   <!-- <p>{{ $product->name }}</p> -->
+                                                   <p>{{ $product->name }}</p>
                                                </th>
                                                <th scope="col"
                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                   <!-- <p>{{ $product->category}}</p> -->
+                                                   <p>{{ $product->category}}</p>
                                                </th>
                                                <th scope="col"
                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                   <!-- <p>{{ $product->quantity }}</p> -->
+                                                   <p>{{ $product->quantity }}</p>
                                                </th>
                                                <th scope="col"
                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                   <!-- <p>{{ $product->price }}</p> -->
+                                                   <p>{{ $product->price }}</p>
                                                </th>
                                            </tr>
-                                       <!-- @endforeach -->
+                                       @endforeach
                                    </tbody>
                                </table>
 

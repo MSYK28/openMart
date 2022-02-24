@@ -41,6 +41,8 @@
         <p>New Summer Collection</p>
         <div class="pro-container">
             @foreach ($products as $product)
+
+                @if($product->category == 'featured')
                 <div class="pro" onclick="window.location.href='/product';">
                     <img src="/assets/images/img/products/{{ $product->item_img }}" alt="">
                     <div class="des">
@@ -62,6 +64,8 @@
                     </a>
 
                 </div>
+
+                @endif
             @endforeach
         </div>
     </section>
@@ -76,7 +80,9 @@
         <h2>New Arrivals</h2>
         <p>New Modern Designs</p>
         <div class="pro-container">
-            @foreach ($products as $product)
+            @foreach ($products as $product )
+
+                @if($product->category == 'new')
                 <div class="pro" onclick="window.location.href='/product';">
                     <img src="/assets/images/img/products/{{ $product->item_img }}" alt="">
                     <div class="des">
@@ -97,7 +103,9 @@
                         Add to cart
                     </a>
 
+
                 </div>
+                @endif
             @endforeach
         </div>
     </section>
