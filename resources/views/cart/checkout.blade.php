@@ -59,11 +59,11 @@
             <form action="" method="">
                 <h6><strong>Payment Method</strong></h6>
                 @csrf
-                <input type="radio" id="html" name="fav_language" value="MPESA">
+                <input type="radio" id="mpesa" name="fav_language" value="MPESA">
                 <label for="mpesa">M-PESA</label><br>
-                <input type="radio" id="css" name="fav_language" value="CASH">
+                <input type="radio" id="cash" name="fav_language" value="CASH">
                 <label for="cash">CASH</label><br>
-                <input type="radio" id="javascript" name="fav_language" value="CARD">
+                <input type="radio" id="card" name="fav_language" value="CARD">
                 <label for="card">VISA/CARD</label>
             </form>
         </div>
