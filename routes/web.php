@@ -51,6 +51,7 @@ Route::get('/checkout', function () {
 //ADMIN CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
+Route::post('/admin/addProduct', [AdminController::class, 'addproduct'])->name('create.product');
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
