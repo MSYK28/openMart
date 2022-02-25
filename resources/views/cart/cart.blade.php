@@ -36,11 +36,11 @@
                 @foreach (session('cart') as $id => $details)
                     @php $total += $details['price'] * $details['quantity'] @endphp
                 <tr>
-                    <td>{{ $details['id'] }}</td>
+                    <td>{{ $id }}</td>
                     <td>
                         <img src="/assets/images/img/products/{{ $details['image'] }}" alt="">
                     </td>
-                    <td>{{ $details['name'] }}</td>
+                    <td>{{ $details['name '] }}</td>
                     <td>{{ $details['price'] }}</td>
                     <td><input type="number" value="1" name=""></td>
                     <td>{{ $details['price'] * $details['quantity'] }}</td>
@@ -77,5 +77,6 @@
                 </tr>
             </tfoot>
         </table>
+        @endif
     </section>
 @endsection
