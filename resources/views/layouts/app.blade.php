@@ -66,7 +66,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li><a class="active" href="{{ url('/') }}">Home</a></li>
                         @auth
-                        @if (Auth::user()->hasRole('administrator'))
+                        @if (Auth::user()->hasRole('user'))
                         <li><a href="{{ url('/admin/dashboard/') }}">Admin</a></li>
                         @endif
                         @endauth
