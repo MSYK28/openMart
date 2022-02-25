@@ -21,10 +21,16 @@ class AdminController extends Controller
     public function __construct()
     {
          $this->middleware(['auth','role:administrator']);
+        //  $this->middleware('role:user');
+
     }
     public function index(){
 
         return view('admin.home');
+    }
+
+    public function editproduct() {
+        return view('admin.editProduct');
     }
 
     public function user_view(){

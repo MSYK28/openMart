@@ -48,10 +48,15 @@ Route::get('/checkout', function () {
     return view('cart.checkout');
 });
 
+Route::get('/wishlist', function () {
+    return view('shop.wishlist');
+});
+
 //ADMIN CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
 Route::post('/admin/addProduct', [AdminController::class, 'addproduct'])->name('create.product');
+Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
