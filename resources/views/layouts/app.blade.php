@@ -77,7 +77,7 @@
                         <li>
                             <a href="{{ url('/cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
-                                Cart {{ count((array) session('cart')) }}
+                                Cart ({{ \Gloudemans\Shoppingcart\Facades\Cart::getcontent()->count() }})
                             </a>
                         </li>
                         <!-- Authentication Links -->

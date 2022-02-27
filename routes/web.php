@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CouponsController;
 
 
 /*
@@ -38,14 +39,21 @@ Route::get('/home', function () {
 Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop');
 Route::get('/product/{id}', [ShoppingCartController::class, 'hiquipview_product'])->name('shop.product');
 Route::get('/add_to_cart/{product}/', [ShoppingCartController::class, 'add_to_cart'])->name('cart.add');
+Route::post('/update-cart/{itemId}/', [ShoppingCartController::class, 'cart_update'])->name('cart.update');
+Route::get('/remove-from-cart/{itemId}', [ShoppingCartController::class, 'cart_remove'])->name('cart.remove');
+Route::post('/checkout_order/', [ShoppingCartController::class, 'checkout_order'])->name('orders.store')->middleware(['auth','verified']);
+Route::post('/checkout/location/', [ShoppingCartController::class, 'checkout_location']);
+Route::get('/cart', [ShoppingCartController::class, 'cart'])->name('cart.cart');
+Route::post('/coupon', [CouponsController::class, 'store'])->name('coupon.store');
+Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.destroy');
 
-Route::get('/cart', function () {
-    return view('cart.cart');
-});
+
 
 Route::get('/checkout', function () {
     return view('cart.checkout');
 });
+
+
 
 //ADMIN CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);

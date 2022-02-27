@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Items;
 use App\Models\Order;
+use App\Models\Voucher;
+use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Image;
 use File;
 use Session;
@@ -17,7 +20,10 @@ class ShoppingCartController extends Controller
     public function hiquipview(){
 
         $products = Items::all();
-        return view('shop.shop',['products'=>$products]);
+        $cart = Cart::getcontent();
+
+       //dd($cart);
+        return view('shop.shop',['products'=>$products, 'cart'=>$cart]);
     }
 
     public function hiquipviewindex(){
@@ -39,51 +45,78 @@ class ShoppingCartController extends Controller
         // dd($product);
 
         $product = Items::findOrFail($id);
-        $cart = session()->get('cart', []);
+        // $cart = session()->get('cart', []);
 
-        //add to cart
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "name " => $product->name,
-                //'category'=>$product->category,
-                "price" => $product->price,
-                'quantity' => 1,
-                "image" => $product->item_img
-            ];
+        // //add to cart
+        // if (isset($cart[$id])) {
+        //     $cart[$id]['quantity']++;
+        // } else {
+        //     $cart[$id] = [
+        //         'price' => $product->price,
+        //         'name  '=> $product->name,
+        //         'quantity'=> 1,
+        //         'image' => $product->item_img
+        //     ];
 
-        }
+        // }
 
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        //     session()->put('cart', $cart);
+        //     return redirect()->back()->with('success', 'Product added to cart successfully!');
+
+        
+       \Cart::add(
+            $product->id,
+            $product->name,
+            $product->price / 100,
+            1,
+            array(),
+         )->associate('App\Models\Items');
+       
+
+         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
         public function cart(){
 
-            return view('hiquip.cart');
-        }
+            $cart = \Cart::getcontent();
 
-        public function cart_remove(Request $request)
+            return view('cart.cart',compact('cart'));
+        }
+        // public function wishlist(){
+            
+        // }
+
+        public function cart_remove($itemId)
         {
 
-            if ($request->id) {
-                $cart = session()->get('cart');
-                if (isset($cart[$request->id])) {
-                    unset($cart[$request->id]);
-                    session()->put('cart', $cart);
-                }
-                session()->flash('success', 'Product removed successfully');
-            }
-        }
-            public function cart_update(Request $request){
+            // if ($request->id) {
+            //     $cart = session()->get('cart');
+            //     if (isset($cart[$request->id])) {
+            //         unset($cart[$request->id]);
+            //         session()->put('cart', $cart);
+            //     }
+            //     session()->flash('success', 'Product removed successfully');
+            // }
+             $cart = \Cart::remove($itemId);
 
-                if($request->id && $request->quantity){
-                    $cart = session()->get('cart');
-                    $cart[$request->id]["quantity"] = $request->quantity;
-                    session()->put('cart', $cart);
-                    session()->flash('success', 'Cart updated successfully');
-                }
+                return back();
+        }
+            public function cart_update($rowId){
+
+                // if($request->id && $request->quantity){
+                //     $cart = session()->get('cart');
+                //     $cart[$request->id]["quantity"] = $request->quantity;
+                //     session()->put('cart', $cart);
+                //     session()->flash('success', 'Cart updated successfully');
+                // }
+
+                   \Cart::update($rowId, ['quantity'=> array(
+                'relative' => false,
+                'value' => request('quantity')
+                 )
+                 ]);
+
+        return back();
 
 
                 return back();
@@ -91,38 +124,35 @@ class ShoppingCartController extends Controller
 
                 public function checkout(){
 
-                    return view('cart.checkout');
+                     //$cartSubTotal= \Cart::getTotal(); 
+                    return view('cart.checkout', compact(' $cartSubTotal'));
                 }
+
 
                 public function checkout_order(Request $request){
 
-                    $cart = session()->get('cart');
-                    foreach(session('cart') as $id => $details){
-
-                        $total += $details['price'] * $details['quantity'];
-
-      }
                     $checkout = $this->validate($request,
                         [
                             'phone'=> 'required|regex:/(07)[0-9]{8}/',
                             'location'=> 'required|max:255',
-                            'payment_method' =>'required'
+                            'fav_language' =>'required'
                         ]);
 
                     $order = new Order();
 
 
-                    $order->phone_number =$request->input('name');
+                    $order->phone_number =$request->input('phone');
                     $order->location = $request->input('location');
-                    $order->payment_method = $request->input('payment_method');
+                    $order->payment_method = $request->input('fav_language');
 
-                    $order->grand_total = $total;
+                    //$order->grand_total = \Cart::session(auth()->id())->getTotal();
                     $order->user_id = auth()->id();
 
                     $order->save();
 
                     //save order items
-
+                    $cart = \Cart::getContent();
+                    
                     foreach($cart as $item){
 
                         $order->items()->attach($item->id, ['order_id'=>$order->id,'quantity'=> $item->quantity ]);
@@ -136,9 +166,9 @@ class ShoppingCartController extends Controller
                      }*/
                     //send email to customer
                     if($order->save() == true){
-                        $recepient_email = $request->email;
+                        $recepient = Auth::user()->email;
 
-                        Mail::to($request->email)->send(new OrderMail($checkout));
+                        Mail::to($recepient)->send(new OrderMail($checkout));
                         Session::flash('msg','Order successful');
 
                     }else{
@@ -146,14 +176,15 @@ class ShoppingCartController extends Controller
 
                     }
                     //empty cart
-                    \Cart::session(auth()->id())->clear();
-
+                    \Cart::clear();
+                    //clear coupon
+                     session()->forget('coupon');
 
 
                     /*take user to thank you
                     return "order completed,thak you for order";*/
 
-                    return redirect()->route('hiquip');
+                    return redirect()->route('shop');
 
                 }
 
