@@ -10,6 +10,7 @@
     <section id="product1" class="section-p1">
         <div class="pro-container">
             @foreach ($products as $product)
+           
             <div class="pro" onclick="window.location.href='/product/{id}';">
                 <img src="/assets/images/img/products/{{ $product->item_img }}" alt="">
                 <div class="des">
@@ -24,11 +25,14 @@
                     </div>
                     <h4>Ksh. {{ number_format($product->price / 100,2) }}</h4>
                 </div>
-                <a href=""><i class='bx bx-cart-alt cart'></i></a>
 
                 @if ($cart->where('id', $product->id)->count())
-                    In cart
+                   <p class="btn btn-success btn-block text-center"> In cart</p>
+
+                @elseif($product->quantity <= '1')
+                    <p class="btn btn-danger btn-block text-center">Out of stock</p>
                 @else
+                <a href=""><i class='bx bx-cart-alt cart'></i></a>
 
                 <a href="{{ route('cart.add', $product->id) }}"
                    class="btn btn-warning btn-block text-center" role="button">

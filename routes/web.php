@@ -39,17 +39,12 @@ Route::get('/product/{post}',[ShoppingCartController::class, 'show']);
 Route::get('/add_to_cart/{product}/', [ShoppingCartController::class, 'add_to_cart'])->name('cart.add');
 Route::post('/update-cart/{itemId}/', [ShoppingCartController::class, 'cart_update'])->name('cart.update');
 Route::get('/remove-from-cart/{itemId}', [ShoppingCartController::class, 'cart_remove'])->name('cart.remove');
-Route::get('/checkout', function () {
-    return view('cart.checkout');
-});
+Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/checkout_order/', [ShoppingCartController::class, 'checkout_order'])->name('orders.store')->middleware(['auth','verified']);
 Route::post('/checkout/location/', [ShoppingCartController::class, 'checkout_location']);
 Route::get('/cart', [ShoppingCartController::class, 'cart'])->name('cart.cart');
 Route::post('/coupon', [CouponsController::class, 'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.destroy');
-
-
-
 
 
 
@@ -74,10 +69,6 @@ Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
 Route::get('/product', function () {return view('shop.product');});
-Route::get('/cart', function () {return view('cart.cart');});
-Route::get('/checkout', function () {return view('cart.checkout');});
 Route::get('/wishlist', function () {return view('shop.wishlist');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
-
-
 Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
