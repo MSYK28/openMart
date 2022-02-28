@@ -60,6 +60,55 @@
             </div>
         </div>
 
+        <div id="subtotal">
+            <h6><strong>Cart totals</strong></h6>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td>Ksh. @php $cartSubTotal= \Cart::getTotal(); echo $cartSubTotal @endphp </td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>Discount</td>
+                    <td>@php $discount = 0.00; echo $discount @endphp</td>
+                </tr>
+                 <tr>
+                     @if (session()->has('coupon'))
+                    <td>Coupon( {{ session()->get('coupon')['name'] }} ) 
+
+                        <form action="{{route('coupon.destroy')}} " method="post" style="display:inline;"> 
+                          @csrf
+                          {{ method_field('delete') }} 
+                          <input type="submit" value="Remove">  
+                        </form>
+                    
+                    </td>
+                    
+                    <td>
+                        @php $coupon = session()->get('coupon')['discount']; echo $coupon; @endphp
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td>@php $total = $cartSubTotal - ($discount + $coupon); echo $total; @endphp</td>
+                </tr>
+                @else
+                 <tr>
+                    <td><strong>Total</strong></td>
+                    <td>@php $total = $cartSubTotal - ($discount); echo $total; @endphp</td>
+                </tr>
+                @endif
+
+                    
+            </table>
+           
+        </div>
+
+
         <div class="subtotal">
             <form action="{{ route('orders.store') }}" method="post">
                 <h6><strong>Payment Method</strong></h6>
@@ -110,60 +159,15 @@
                  <div>
                     <input type="hidden" name="grand_total" value="{{ $total }}">
                 </div> 
+
                 <div class="normal">
                 <button type="submit" class="">Complete Order</button>
                 </div>
+
             </form>
         </div>
 
-        <div id="subtotal">
-            <h6><strong>Cart totals</strong></h6>
-            <table>
-                <tr>
-                    <td>Cart Subtotal</td>
-                    <td>Ksh. @php $cartSubTotal= \Cart::getTotal(); echo $cartSubTotal @endphp </td>
-                </tr>
-                <tr>
-                    <td>Shipping</td>
-                    <td>0.00</td>
-                </tr>
-                <tr>
-                    <td>Discount</td>
-                    <td>@php $discount = 0.00; echo $discount @endphp</td>
-                </tr>
-                 <tr>
-                     @if (session()->has('coupon'))
-                    <td>Coupon( {{ session()->get('coupon')['name'] }} ) 
-
-                        <form action="{{route('coupon.destroy')}} " method="post" style="display:inline;"> 
-                          @csrf
-                          {{ method_field('delete') }} 
-                          <input type="submit" value="Remove">  
-                        </form>
-                    
-                    </td>
-                    
-                    <td>
-                        @php $coupon = session()->get('coupon')['discount']; echo $coupon; @endphp
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td><strong>Total</strong></td>
-                    <td>@php $total = $cartSubTotal - ($discount + $coupon); echo $total; @endphp</td>
-                </tr>
-                @else
-                 <tr>
-                    <td><strong>Total</strong></td>
-                    <td>@php $total = $cartSubTotal - ($discount); echo $total; @endphp</td>
-                </tr>
-                @endif
-
-                    
-            </table>
-           
-        </div>
-
+        
         
     </section>
 @endsection
