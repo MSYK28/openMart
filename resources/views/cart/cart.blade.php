@@ -40,14 +40,15 @@
                        
                        <img src="/assets/images/img/products/{{ $details->model->item_img }}" alt="">
                     </td>
-                    <td>{{ $details['name '] }}</td>
+                    <td>{{ $details['name'] }}</td>
                     <td>{{ $details['price'] }}</td>
                     <td>
 
                         <form action="{{ route('cart.update',$details->id) }}" method="post">
                            @csrf
-                            <input type="number"  name="quantity" value="{{ $details['quantity'] }}" class="quantity update-cart" >
-                            <input type="submit" value="save">
+                            <input type="number"  name="quantity" value="{{ $details['quantity'] }}" class="quantity update-cart " >
+                            <button class="btn btn-sm btn-primary" type="submit"><i class='bx bx-check-double'></i></button>
+                            <!-- <input class="btn btn-sm btn-primary" type="submit" value="save"> -->
                         </form>
                     </td>
                     <td>{{ \Cart::get($details->id)->getPriceSum()}}</td>
@@ -76,7 +77,7 @@
                         <a href="{{ url('/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue
                             Shopping</a>
 
-                        <button onclick="location.href='{{ url('checkout') }}'" class="btn btn-success">
+                        <a href="{{ route('cart.checkout')}}" class="btn btn-success">
                             Proceed to Checkout
                             <i class="fa fa-angle-right"></i>
                         </button>
