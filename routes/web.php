@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ProductsController;
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,45 +18,32 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/home', function () {
-    return view('index');
-});
-
-Auth::routes();
+// Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
 
-Route::get('/home', function () {
-    return view('index');
-})->name('home');
+Route::group(['middleware' => ['auth', 'isUser']], function() {
+        Route::get('/home', function () {return view('index');});
+        Route::get('/', function () {return view('index');});
+        Route::get('/home', function () {return view('index');});
+});
 
 
 //SHOPPING CONTROLLER
+Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
 Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop');
 Route::get('/product/{id}', [ShoppingCartController::class, 'hiquipview_product'])->name('shop.product');
+Route::get('/product/{post}',[ShoppingCartController::class, 'show']);
 Route::get('/add_to_cart/{product}/', [ShoppingCartController::class, 'add_to_cart'])->name('cart.add');
 
-Route::get('/cart', function () {
-    return view('cart.cart');
-});
-
-Route::get('/checkout', function () {
-    return view('cart.checkout');
-});
-
-Route::get('/wishlist', function () {
-    return view('shop.wishlist');
-});
-
-//ADMIN CONTROLLER
+//ADMIN AND PRODUCTS CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
 Route::post('/admin/addProduct', [AdminController::class, 'addproduct'])->name('create.product');
-Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
+// Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
+Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
+Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
+
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
@@ -64,20 +51,16 @@ Route::prefix('admin/datatables')->group(
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
 
-Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
-Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
+
+// STATIC PAGES
+Route::get('/about', function () {return view('about');});
+Route::get('/blog', function () {return view('blog');});
+Route::get('/contact', function () {return view('contact');});
+Route::get('/product', function () {return view('shop.product');});
+Route::get('/cart', function () {return view('cart.cart');});
+Route::get('/checkout', function () {return view('cart.checkout');});
+Route::get('/wishlist', function () {return view('shop.wishlist');});
+Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 
 
-
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/blog', function () {
-    return view('blog');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);

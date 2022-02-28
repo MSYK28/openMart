@@ -66,7 +66,7 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Gucci</td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <a href="#" class="btn btn-sm btn-warning button">Add to Cart</a>
-                <example-component></example-component>
+                <!-- <example-component></example-component> -->
               </td>
             </tr>
 
