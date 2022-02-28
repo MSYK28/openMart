@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Items;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -11,13 +15,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['auth','verified']);
-    }
-
     public function index()
     {
-        return view('index');
+        $products = Items::all();
+
+        $cart = \Cart::getcontent();
+
+        return view('index', ['products'=>$products, 'cart'=>$cart]);
     }
 }
