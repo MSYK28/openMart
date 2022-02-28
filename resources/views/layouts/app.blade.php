@@ -75,12 +75,17 @@
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
 
+                        @if(\Cart::getcontent()->count() > 0)
+
                         <li>
-                            <a href="{{ url('/cart') }}">
+                            <a href="{{ route('cart.cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
-                                Cart <span class="badge badge-warning">{{ count((array) session('cart')) }}</span>
+
+                                Cart <span class="badge badge-warning">{{ \Cart::getcontent()->count() }}</span>
+
                             </a>
                         </li>
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -94,19 +99,22 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+
                         @endguest
-
                     </ul>
                 </div>
             </div>

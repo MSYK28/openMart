@@ -45,22 +45,45 @@
                             <div class="flex-shrink-0 h-10 w-10">
                                 <img class="h-10 w-10 rounded-full" src="/assets/images/img/products/{{ $product->item_img }}" alt="">
                             </div>
+                            
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">{{ $product->name }}</div>
-                            </div>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $product->category}}</div>
                         </td>
+                       
+                        @if($product->quantity >= '20')
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ $product->quantity}}</div>
+                            <div class="text-sm text-gray-900">
+                                {{ $product->quantity}}
+                                <span style="padding-left: 5px;" class="badge badge-success">In stock</span>
+                            </div>
                         </td>
+                        @elseif($product->quantity <= '19' && $product->quantity >= '10')
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                {{ $product->quantity}}
+                                <span style="padding-left: 5px;" class="badge badge-warning">Low stock</span>
+                            </div>
+                        </td>
+                        @else
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                {{ $product->quantity}}
+                                <span style="padding-left: 5px;" class="badge badge-danger">Out of stock</span>
+                            </div>
+                        </td>
+                        @endif
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $product->price}}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href="{{ url('/admin/editProduct') }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>
                         </tr>
                         @endforeach

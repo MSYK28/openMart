@@ -16,7 +16,7 @@
     </div>
 
     <section id="cart" class="section-p1">
-        @if(!empty(session('cart')))
+        @if($cart->count() > 0)
         <table width="100%">'
             <thead>
                 <tr>
@@ -31,37 +31,45 @@
             </thead>
 
             <tbody>
-            @php $total = 0 @endphp
-            @if (session('cart'))
-                @foreach (session('cart') as $id => $details)
-                    @php $total += $details['price'] * $details['quantity'] @endphp
+                @foreach ($cart as $details)     
                 <tr>
-                    <td>{{ $id }}</td>
+
+                    <td>@php $number = 0; $number++; echo $number; @endphp</td>
+
                     <td>
-                        <img src="/assets/images/img/products/{{ $details['image'] }}" alt="">
+                       
+                       <img src="/assets/images/img/products/{{ $details->model->item_img }}" alt="">
                     </td>
-                    <td>{{ $details['name '] }}</td>
+                    <td>{{ $details['name'] }}</td>
                     <td>{{ $details['price'] }}</td>
-                    <td><input type="number" value="1" name=""></td>
-                    <td>{{ $details['price'] * $details['quantity'] }}</td>
                     <td>
 
-                            <button class="btn btn-danger remove-from-cart" aria-hidden="true">
+                        <form action="{{ route('cart.update',$details->id) }}" method="post">
+                           @csrf
+                            <input type="number"  name="quantity" value="{{ $details['quantity'] }}" class="quantity update-cart " >
+                            <button class="btn btn-sm btn-primary" type="submit"><i class='bx bx-check-double'></i></button>
+                            <!-- <input class="btn btn-sm btn-primary" type="submit" value="save"> -->
+                        </form>
+                    </td>
+                    <td>{{ \Cart::get($details->id)->getPriceSum()}}</td>
+                    <td>
+
+                            <a class="btn btn-danger remove-from-cart" href="{{ route('cart.remove', $details->id) }}" onclick="return confirm('Are You Sure You want to Remove Item?')">
                                 Remove
-                            </button>
+                            </a>
 
                     </td>
                 </tr>
 
                 @endforeach
-                @endif
+                
             </tbody>
 
             <tfoot>
                 <tr>
                     <td colspan="5" scope="col"
                         class="text-right px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider actions">
-                        <h6><strong style="color: black">Total: Ksh.3470</strong></h6>
+                        <h6><strong style="color: black">Total: Ksh.{{ \Cart::getTotal()}}</strong></h6>
                     </td>
                 </tr>
                 <tr>
@@ -69,7 +77,7 @@
                         <a href="{{ url('/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue
                             Shopping</a>
 
-                        <button onclick="location.href='{{ url('checkout') }}'" class="btn btn-success">
+                        <a href="{{ route('cart.checkout')}}" class="btn btn-success">
                             Proceed to Checkout
                             <i class="fa fa-angle-right"></i>
                         </button>
@@ -79,4 +87,5 @@
         </table>
         @endif
     </section>
+
 @endsection
