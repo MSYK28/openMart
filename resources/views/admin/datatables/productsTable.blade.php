@@ -53,12 +53,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $product->category}}</div>
                         </td>
-                        <!-- Add checks to alert products that are understocked -->
-                        <!-- @if( $quantity =< 10 ) -->
+                       
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $product->quantity}}</div>
                         </td>
-                        <!-- @endif -->
+                        
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $product->price}}</div>
                         </td>

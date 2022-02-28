@@ -23,8 +23,8 @@ use GuzzleHttp\Middleware;
 // Auth::routes();
 Auth::routes(['verify' => true]);
 
-
-Route::group(['middleware' => ['auth', 'isUser']], function() {
+// isUser
+Route::group(['middleware' => ['auth', ]], function() {
         Route::get('/home', function () {return view('index');});
         Route::get('/', function () {return view('index');});
         Route::get('/home', function () {return view('index');});

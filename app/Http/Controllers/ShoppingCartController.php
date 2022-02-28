@@ -51,10 +51,10 @@ class ShoppingCartController extends Controller
         return view('shop.product', compact('post'));
     }
 
-    public function cart()
-    {
-        return view('cart.cart');
-    }
+    // public function cart()
+    // {
+    //     return view('cart.cart');
+    // }
 
     public function add_to_cart($id)
     {
@@ -94,6 +94,7 @@ class ShoppingCartController extends Controller
 
     }
 
+        public function cart(){
 
             $cart = \Cart::getcontent();
 
