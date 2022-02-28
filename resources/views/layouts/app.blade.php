@@ -76,7 +76,7 @@
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
 
                         <li>
-                            <a href="{{ url('/cart') }}">
+                            <a href="{{ route('cart.cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
 
                                 Cart <span class="badge badge-warning">{{ \Cart::getcontent()->count() }}</span>
