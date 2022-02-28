@@ -16,6 +16,9 @@
     </div>
 
     <section id="cart" class="section-p1">
+        @if(empty(session('cart')))
+
+        @endif
         @if(!empty(session('cart')))
         <table width="100%">'
             <thead>
@@ -76,7 +79,8 @@
                     </td>
                 </tr>
             </tfoot>
+            @endif
         </table>
-        @endif
+
     </section>
 @endsection

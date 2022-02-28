@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    session()->getHandler()->destroy();
     <section id="page-header">
         <h2>#quickdelivery</h2>
         <p>Same day delivery for premium subscribers</p>
@@ -91,6 +92,6 @@
             <button class="normal">Complete Order</button>
         </div>
 
-        
+
     </section>
 @endsection
