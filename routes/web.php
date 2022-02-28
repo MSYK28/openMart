@@ -49,10 +49,6 @@ Route::post('/coupon', [CouponsController::class, 'store'])->name('coupon.store'
 Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.destroy');
 
 
-
-
-
-
 //ADMIN AND PRODUCTS CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
@@ -74,10 +70,10 @@ Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
 Route::get('/product', function () {return view('shop.product');});
-Route::get('/cart', function () {return view('cart.cart');});
-Route::get('/checkout', function () {return view('cart.checkout');});
+// Route::get('/cart', function () {return view('cart.cart');});
+// Route::get('/checkout', function () {return view('cart.checkout');});
 Route::get('/wishlist', function () {return view('shop.wishlist');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 
 
-Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
+// Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
