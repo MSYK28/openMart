@@ -8,6 +8,7 @@ use App\Models\Items;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Mail\Mailable;
 use Image;
 use File;
 use Session;
@@ -18,22 +19,28 @@ class ShoppingCartController extends Controller
 
         $products = Items::all();
         return view('shop.shop', compact('products'));
-
-        $products = Items::all();
-        return view('shop.shop',['products'=>$products]);
     }
 
     public function hiquipviewindex(){
-
-
         $products = Items::all();
-        return view('index',['products'=>$products]);
+        return view('index', ['products'=>$products]);
     }
 
-    public function hiquipview_product($id){
+    public function hiquipview_product(Items $product){
+        $products = Items::all();
+        return view('shop.product',['products'=>$products]);
+    }
 
-        $product = Items::find($id);
-        return view('shop.product',['product'=>$product]);
+    public function index(Items $post)
+    {
+        $posts = Items::all();
+
+        return view('shop.product', compact('posts'));
+    }
+
+    public function show(Items $post)
+    {
+        return view('shop.product', compact('post'));
     }
 
     public function cart()
@@ -104,7 +111,7 @@ class ShoppingCartController extends Controller
                     $cart = session()->get('cart');
                     foreach(session('cart') as $id => $details){
 
-                        $total += $details['price'] * $details['quantity'];
+                    $total += $details['price'] * $details['quantity'];
 
       }
                     $checkout = $this->validate($request,

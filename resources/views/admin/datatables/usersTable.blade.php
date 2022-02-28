@@ -51,7 +51,11 @@
                 <div class="text-sm text-gray-900">{{ $user->email }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
+                @if($user->isbanned == '0')
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Enabled </span>
+                @elseif($user->isbanned == '1')
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"> Disabled </span>
+                @endif
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
