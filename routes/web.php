@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ProductsController;
-
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +51,9 @@ Route::get('/checkout', function () {
 Route::get('/wishlist', function () {
     return view('shop.wishlist');
 });
+
+//WISHLIST CONTROLLER
+// Route::get('/wishlist', [WishlistControll$wishlister::class, 'index']);
 
 //ADMIN CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);

@@ -67,8 +67,6 @@ class ShoppingCartController extends Controller
             return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
-
-
         public function cart_remove(Request $request)
         {
 
