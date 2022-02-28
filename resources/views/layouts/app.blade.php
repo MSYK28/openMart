@@ -75,6 +75,8 @@
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
 
+                        @if(\Cart::getcontent()->count() > 0)
+
                         <li>
                             <a href="{{ url('/cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
@@ -83,6 +85,7 @@
 
                             </a>
                         </li>
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -112,7 +115,6 @@
                             </li>
 
                         @endguest
-
                     </ul>
                 </div>
             </div>
