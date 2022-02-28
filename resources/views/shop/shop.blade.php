@@ -22,17 +22,21 @@
                         <i class='bx bxs-star'></i>
                         <i class='bx bxs-star'></i>
                     </div>
-                    <h4>Ksh. {{ $product->price }}</h4>
+                    <h4>Ksh. {{ number_format($product->price / 100,2) }}</h4>
                 </div>
                 <a href=""><i class='bx bx-cart-alt cart'></i></a>
+
+                @if ($cart->where('id', $product->id)->count())
+                    In cart
+                @else
+
                 <a href="{{ route('cart.add', $product->id) }}"
                    class="btn btn-warning btn-block text-center" role="button">
                     Add to cart
                 </a>
-
+                @endif
             </div>
             @endforeach
-
             </div>
     </section>
 

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->float('grand_total')->default("0.0");
-            $table->enum('payment_method',['cash','mpesa','cheque'])->default('cash');
+            $table->enum('payment_method',['cash','mpesa','visa'])->default('cash');
             $table->enum('status',['pending','processing','completed','decline'])->default('pending');
             $table->string('phone_number');
             $table->longtext('location');
-            $table->time('datePaid', $precision = 0);
+            $table->time('datePaid', $precision = 0)->nullable();
             $table->boolean('is_Returned')->default(false);
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
