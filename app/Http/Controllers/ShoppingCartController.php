@@ -31,7 +31,8 @@ class ShoppingCartController extends Controller
 
     public function hiquipviewindex(){
         $products = Items::all();
-        return view('index', ['products'=>$products]);
+        $cart = \Cart::getcontent();
+        return view('index', ['products'=>$products, 'cart'=>$cart]);
     }
 
     public function hiquipview_product(Items $product){
