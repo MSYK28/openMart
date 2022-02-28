@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    session()->getHandler()->destroy();
     <section id="page-header">
         <h2>#quickdelivery</h2>
         <p>Same day delivery for premium subscribers</p>
@@ -15,8 +14,6 @@
             </div>
         </div>
     </div>
-
-    {{-- $request->route()->getName(); --}}
 
     <section id="cart-add" class="section-p1">
         <div id="subtotal" class="location">
@@ -38,7 +35,7 @@
                             41362,
                             Kenya
                             <div class="change_location normal" style="padding: 15px" id="button">
-                                <button class="normal" :href="route('dashboard')" :active="request()->routeIs('#')">
+                                <button class="normal" >
                                     <i style="color: white; padding-right:5px" class='bx bx-map-alt trick_icon'></i>
                                     {{ __('Change Location') }}
                                 </button>
@@ -55,62 +52,12 @@
             <div>
                 <form action="{{ route('coupon.store')}}" method="post">
 
-                    @csrf 
+                @csrf 
                 <input type="text" name="coupon_code" id="coupon_code" placeholder="Enter Your Coupon">
                 <button type="submit" class="normal">Apply</button>
 
                 </form>
             </div>
-        </div>
-
-        <div class="subtotal">
-            <form action="{{ route('orders.store') }}" method="post">
-                <h6><strong>Payment Method</strong></h6>
-                @csrf
-
-                <label for="mpesa">
-                <input type="radio" id="html" name="fav_language" value="mpesa">
-                M-PESA</label><br>
-                <label for="cash">
-                <input type="radio" id="css" name="fav_language" value="cash">
-                CASH</label><br>
-                <label for="visa">
-                <input type="radio" id="javascript" name="fav_language" value="visa">
-                VISA/CARD</label>
-
-                 <div class="">
-                    <label for="last_name" class="sr-only">Location
-                    </label>
-                    <input type="text" name="location" id="last_name" placeholder="Location" class="" value="{{ old('location')}}">  
-
-                </div>
-
-
-                <div class="">
-                    <label for="username" class="sr-only">Phone Number
-                    </label>
-                    <input type="number" name="phone" id="phone" placeholder="Phone number" class="" value="{{ old('phone')}}"><br>
-                    <small>Format: 07-2456-7890</small>
-                </div>
-                @if (session()->has('coupon'))
-                     @php $cartSubTotal= \Cart::getTotal();
-                     $coupon = session()->get('coupon')['discount'];
-                     $discount = 0.00;
-                     $total = $cartSubTotal - ($discount + $coupon);  
-                     @endphp
-                
-                @else
-                
-                    @php $cartSubTotal= \Cart::getTotal();
-                     $discount = 0.00;
-                     $total = $cartSubTotal - ($discount); @endphp
-                
-                @endif
-                 <div>
-                    <input type="hidden" name="grand_total" value="{{ $total }}">
-                </div> 
-                 <button type="submit" class="normal">Complete Order</button>
-            </form>
         </div>
 
         <div id="subtotal">
@@ -162,5 +109,65 @@
         </div>
 
 
+        <div class="subtotal">
+            <form action="{{ route('orders.store') }}" method="post">
+                <h6><strong>Payment Method</strong></h6>
+                @csrf
+
+                <div class="pt-4">
+                    <div class="form-group">
+                        <label for="last_name" class="sr-only ">Location
+                        </label>
+                        <input type="text" name="location" id="last_name" placeholder="Location" class="form-control" value="{{ old('location')}}">  
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="sr-only">Phone Number
+                        </label>
+                        <input type="number" name="phone" id="phone" placeholder="Format: 07-2456-7890" class="form-control" value="{{ old('phone')}}"><br>
+                        <small></small>
+                    </div>
+
+                    <label for="mpesa">
+                        <input type="radio" id="html" name="fav_language" value="mpesa">
+                        M-PESA</label><br>
+                    </label>
+                    
+                    <label for="cash">
+                    <input type="radio" id="css" name="fav_language" value="cash">
+                    CASH</label><br>
+                    <label for="visa">
+                    <input type="radio" id="javascript" name="fav_language" value="visa">
+                    VISA/CARD</label>
+                </div>
+
+                @if (session()->has('coupon'))
+                     @php $cartSubTotal= \Cart::getTotal();
+                     $coupon = session()->get('coupon')['discount'];
+                     $discount = 0.00;
+                     $total = $cartSubTotal - ($discount + $coupon);  
+                     @endphp
+                
+                @else
+                
+                    @php $cartSubTotal= \Cart::getTotal();
+                     $discount = 0.00;
+                     $total = $cartSubTotal - ($discount); @endphp
+                
+                @endif
+                 <div>
+                    <input type="hidden" name="grand_total" value="{{ $total }}">
+                </div> 
+
+                <div class="normal">
+                <button type="submit" class="">Complete Order</button>
+                </div>
+
+            </form>
+        </div>
+
+        
+        
     </section>
 @endsection

@@ -57,11 +57,20 @@
                         </div>
                         <h4>Ksh. {{ $product->price }}</h4>
                     </div>
-                    {{--                <a href=""><i class='bx bx-cart-alt cart'></i></a>--}}
+
+                    @if ($cart->where('id', $product->id)->count())
+                    <p class="btn btn-success btn-block text-center"> In cart</p>
+
+                    @elseif($product->quantity <= '1')
+                        <p class="btn btn-danger btn-block text-center">Out of stock</p>
+                    @else
+                    <a href=""><i class='bx bx-cart-alt cart'></i></a>
+
                     <a href="{{ route('cart.add', $product->id) }}"
-                       class="btn btn-warning btn-block text-center" role="button">
+                    class="btn btn-warning btn-block text-center" role="button">
                         Add to cart
                     </a>
+                    @endif
 
                 </div>
 
@@ -98,10 +107,19 @@
                         <h4>Ksh. {{ $product->price }}</h4>
                     </div>
                     {{--                <a href=""><i class='bx bx-cart-alt cart'></i></a>--}}
+                    @if ($cart->where('id', $product->id)->count())
+                    <p class="btn btn-success btn-block text-center"> In cart</p>
+
+                    @elseif($product->quantity <= '1')
+                        <p class="btn btn-danger btn-block text-center">Out of stock</p>
+                    @else
+                    <a href=""><i class='bx bx-cart-alt cart'></i></a>
+
                     <a href="{{ route('cart.add', $product->id) }}"
-                       class="btn btn-warning btn-block text-center" role="button">
+                    class="btn btn-warning btn-block text-center" role="button">
                         Add to cart
                     </a>
+                    @endif
 
 
                 </div>

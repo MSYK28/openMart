@@ -30,30 +30,60 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">Name</label>
-                <input type="text" id="inputName" class="form-control" value="AdminLTE">
+
+              <form action="{{ route('edit.product') }}" method="post" enctype="multipart/form-data">
+
+                @csrf
+                <input type="hidden" name="id" value="{{ $product->id }}">
+                
+                <div class="form-group">
+                <label for="product_name">Name</label>
+                <input type="text" name="product_name" id="inputName" class="form-control" value="{{ $product->name }}">
+                 @error('product_name')
+            <div class="text-red-500 mt-2 text-sm">
+              
+              {{ $message }}
+              
+            </div>
+          @enderror 
               </div>
               <div class="form-group">
-                <label for="inputDescription">Description</label>
-                <textarea id="inputDescription" class="form-control" rows="4">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</textarea>
+                <label for="description">Description</label>
+                <textarea id="inputDescription" class="form-control" rows="4" name="description">
+                  {{ $product->description }}
+                </textarea>
+                
+                 @error('decription')
+            <div class="text-red-500 mt-2 text-sm">
+              
+              {{ $message }}
+              
+            </div>
+          @enderror 
               </div>
               <div class="form-group">
-                <label for="inputStatus">Status</label>
-                <select id="inputStatus" class="form-control custom-select">
-                  <option disabled>Select one</option>
-                  <option>Available</option>
-                  <option>Unavailable</option>
-                  <option selected>Success</option>
-                </select>
+                <label for="quantity">Quantity</label>
+                <input type="number" id="inputClientCompany" class="form-control" value="{{ $product-> quantity }}" name="quantity">
+
+                 @error('quantity')
+            <div class="text-red-500 mt-2 text-sm">
+              
+              {{ $message }}
+              
+            </div>
+          @enderror 
               </div>
               <div class="form-group">
-                <label for="inputClientCompany">Quantity</label>
-                <input type="number" id="inputClientCompany" class="form-control" value="Deveint Inc">
-              </div>
-              <div class="form-group">
-                <label for="inputProjectLeader">Price</label>
-                <input type="text" id="inputProjectLeader" class="form-control" value="Tony Chicken">
+                <label for="price">Price</label>
+                <input type="number" id="inputProjectLeader" class="form-control" value="{{ $product->price }}" name="price">
+
+                 @error('price')
+            <div class="text-red-500 mt-2 text-sm">
+              
+              {{ $message }}
+              
+            </div>
+          @enderror 
               </div>
             </div>
             <!-- /.card-body -->
@@ -74,10 +104,10 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="image"
+                                        <label for="product_img"
                                             class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                             <span>Upload a file</span>
-                                            <input id="image" name="image" type="file" class="form-control">
+                                            <input id="image" name="product_img" type="file" class="form-control">
                                         </label>
                                     </div>
                                     <p class="text-xs text-gray-500">
@@ -94,6 +124,7 @@
           <a href="#" class="btn btn-secondary">Cancel</a>
           <input type="submit" value="Save Changes" class="btn btn-success float-right">
         </div>
-      </div>
+    </div>
+  </form>
     </section>
 @endsection
