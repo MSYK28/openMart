@@ -31,10 +31,9 @@ class Order extends Model
     // public function items(){
     public function items(){
 
-        //     return $this->belongsToMany(Items::class, 'order_items','order_id','product_id')->withTimestamps();
-        return $this->belongsToMany(Items::class, 'order_items','order_id','product_id')->withTimestamps();
+        return $this->belongsToMany(Items::class, 'order_lists','order_id','item_id')->withTimestamps();
 
-        // }
+        
     }
 
 }
