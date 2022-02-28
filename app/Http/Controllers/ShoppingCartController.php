@@ -10,7 +10,7 @@ use App\Models\Voucher;
 use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-//use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Mail\Mailable;
 use Image;
 use File;
 use Session;
@@ -20,24 +20,41 @@ class ShoppingCartController extends Controller
     public function hiquipview(){
 
         $products = Items::all();
+
         $cart = \Cart::getcontent();
 
        //dd($cart);
         return view('shop.shop',['products'=>$products, 'cart'=>$cart]);
+
+
     }
 
     public function hiquipviewindex(){
-
         $products = Items::all();
-        return view('index',['products'=>$products]);
+        return view('index', ['products'=>$products]);
     }
 
-    public function hiquipview_product($id){
-
-        $product = Items::find($id);
-        return view('shop.product',['product'=>$product]);
+    public function hiquipview_product(Items $product){
+        $products = Items::all();
+        return view('shop.product',['products'=>$products]);
     }
 
+    public function index(Items $post)
+    {
+        $posts = Items::all();
+
+        return view('shop.product', compact('posts'));
+    }
+
+    public function show(Items $post)
+    {
+        return view('shop.product', compact('post'));
+    }
+
+    public function cart()
+    {
+        return view('cart.cart');
+    }
 
     public function add_to_cart($id)
     {
@@ -76,7 +93,7 @@ class ShoppingCartController extends Controller
          return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
-        public function cart(){
+
 
             $cart = \Cart::getcontent();
 
@@ -85,6 +102,7 @@ class ShoppingCartController extends Controller
         // public function wishlist(){
             
         // }
+
 
         public function cart_remove($itemId)
         {
@@ -129,7 +147,11 @@ class ShoppingCartController extends Controller
                 }
 
 
+
                 public function checkout_order(Request $request){
+
+                   
+
 
                     $checkout = $this->validate($request,
                         [

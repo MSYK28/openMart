@@ -66,6 +66,7 @@
             <form action="{{ route('orders.store') }}" method="post">
                 <h6><strong>Payment Method</strong></h6>
                 @csrf
+
                 <label for="mpesa">
                 <input type="radio" id="html" name="fav_language" value="mpesa">
                 M-PESA</label><br>
@@ -108,7 +109,6 @@
                     <input type="hidden" name="grand_total" value="{{ $total }}">
                 </div> 
                  <button type="submit" class="normal">Complete Order</button>
-
             </form>
         </div>
 

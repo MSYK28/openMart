@@ -682,7 +682,7 @@ footer .copyright {
 }
 
 #prodetails .single-pro-details button {
-    background: #088178;
+    /* background: #088178; */
     color: #fff;
 }
 
@@ -816,3 +816,4 @@ footer .copyright {
 .this-progress-bar {
     padding-top: 10px;
 }
+

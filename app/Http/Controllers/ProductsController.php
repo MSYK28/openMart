@@ -3,112 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Items;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('admin.create');
     }
+
 
     public function create()
     {
         return view('admin.create');
     }
 
-    public function store()
+    public function users()
     {
-        $data = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-            'size' => 'required',
-            'price' => 'required',
-            'image' => ['required','image'],
-        ]);
+         $users = User::all();
 
-        $imagePath = request('image')->store('uploads', 'public');
-
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-        $image->save();
-
-        auth()->user()->posts()->create([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'location' => $data['location'],
-            'size' => $data['size'],
-            'price' => $data['price'],
-            'image' => $imagePath,
-        ]);
-
-        return redirect('/profile/'.auth()->user()->id);
-
+        return view('admin.datatables.usersTable', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function datatables()
     {
-        
-        return view('admin.datatables.productsTable');
+         $products = Items::all();
+
+        return view('admin.datatables.productsTable', compact('products'));
     }
 
     public function orders()
     {
-        return view('admin.datatables.ordersTable');
+         $orders = Order::all();
+
+        return view('admin.datatables.ordersTable', compact('orders'));
     }
 
-    public function users()
+    public function showAll()
     {
-        return view('admin.datatables.usersTable');
-    }
+         $orders = Order::all();
+         $products = Products::all();
+         $users = User::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('admin.datatables.ordersTable', compact('orders', 'products', 'users'));
     }
 }

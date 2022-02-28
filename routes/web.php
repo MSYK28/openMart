@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CouponsController;
+use GuzzleHttp\Middleware;
 
 
 /*
@@ -19,25 +20,22 @@ use App\Http\Controllers\CouponsController;
 |
 */
 
-Route::get('/home', function () {
-    return view('index');
-});
-
-Auth::routes();
+// Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/', function () {
-    return view('index');
+
+Route::group(['middleware' => ['auth', 'isUser']], function() {
+        Route::get('/home', function () {return view('index');});
+        Route::get('/', function () {return view('index');});
+        Route::get('/home', function () {return view('index');});
 });
+
+
+//SHOPPING CONTROLLER
 Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
-
-Route::get('/home', function () {
-    return view('index');
-})->name('home');
-
-
 Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop');
 Route::get('/product/{id}', [ShoppingCartController::class, 'hiquipview_product'])->name('shop.product');
+Route::get('/product/{post}',[ShoppingCartController::class, 'show']);
 Route::get('/add_to_cart/{product}/', [ShoppingCartController::class, 'add_to_cart'])->name('cart.add');
 Route::post('/update-cart/{itemId}/', [ShoppingCartController::class, 'cart_update'])->name('cart.update');
 Route::get('/remove-from-cart/{itemId}', [ShoppingCartController::class, 'cart_remove'])->name('cart.remove');
@@ -49,32 +47,36 @@ Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.des
 
 
 
+
 Route::get('/checkout', function () {
     return view('cart.checkout');
 });
 
-
-
-//ADMIN CONTROLLER
+//ADMIN AND PRODUCTS CONTROLLER
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
-Route::get('/admin/datatables', [ProductsController::class, 'datatables']);
-Route::get('/admin/datatables/orders', [ProductsController::class, 'orders']);
-Route::get('/admin/datatables/users', [ProductsController::class, 'users']);
-
+Route::post('/admin/addProduct', [AdminController::class, 'addproduct'])->name('create.product');
+// Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
 Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
 
-
-Route::get('/about', function () {
-    return view('about');
+Route::prefix('admin/datatables')->group(
+    function(){
+        Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
+        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable');
+        Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
 
-Route::get('/blog', function () {
-    return view('blog');
-});
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// STATIC PAGES
+Route::get('/about', function () {return view('about');});
+Route::get('/blog', function () {return view('blog');});
+Route::get('/contact', function () {return view('contact');});
+Route::get('/product', function () {return view('shop.product');});
+Route::get('/cart', function () {return view('cart.cart');});
+Route::get('/checkout', function () {return view('cart.checkout');});
+Route::get('/wishlist', function () {return view('shop.wishlist');});
+Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 
+
+Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);

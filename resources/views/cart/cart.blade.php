@@ -8,7 +8,7 @@
 
     <div class="this-progress-bar">
         <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0"
                 aria-valuemax="100" style="width:40%">
                 40%
             </div>
@@ -33,12 +33,14 @@
             <tbody>
                 @foreach ($cart as $details)     
                 <tr>
+
                     <td>@php $number = 0; $number++; echo $number; @endphp</td>
+
                     <td>
                        
                        <img src="/assets/images/img/products/{{ $details->model->item_img }}" alt="">
                     </td>
-                    <td>{{ $details['name'] }}</td>
+                    <td>{{ $details['name '] }}</td>
                     <td>{{ $details['price'] }}</td>
                     <td>
 

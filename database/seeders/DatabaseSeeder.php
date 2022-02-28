@@ -14,9 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(LaratrustSeeder::class);
-        
-        $this->call(VoucherTableSeeder::class);
-     }
+
+
+        $this->call(
+            LaratrustSeeder::class,
+            ItemsSeeder::class,
+            VoucherTableSeeder::class,
+    );
+    }
 
 }
