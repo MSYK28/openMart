@@ -10,7 +10,7 @@
     <section id="product1" class="section-p1">
         <div class="pro-container">
             @foreach ($products as $product)
-            <div class="pro" onclick="window.location.href='/product';">
+            <div class="pro" onclick="window.location.href='/product/{{ $product->id }}';">
                 <img src="/assets/images/img/products/{{ $product->item_img }}" class="w-100" width="200px" height="300px" alt="">
                 <div class="des">
 {{--                    <span>{{ $product->brand }}</span>--}}

@@ -43,7 +43,7 @@
             @foreach ($products as $product)
 
                 @if($product->category == 'featured')
-                <div class="pro" onclick="window.location.href='/product';">
+                    <div class="pro" onclick="window.location.href='/product/{{ $product->id }}';">
                     <img src="/assets/images/img/products/{{ $product->item_img }}" width="200px" height="300px" alt="">
                     <div class="des">
                         {{--                    <span>{{ $product->brand }}</span>--}}
@@ -83,7 +83,7 @@
             @foreach ($products as $product )
 
                 @if($product->category == 'new')
-                <div class="pro" onclick="window.location.href='/product';">
+                    <div class="pro" onclick="window.location.href='/product/{{ $product->id }}';">
                     <img src="/assets/images/img/products/{{ $product->item_img }}" width="200px" height="300px" alt="">
                     <div class="des">
                         {{--                    <span>{{ $product->brand }}</span>--}}

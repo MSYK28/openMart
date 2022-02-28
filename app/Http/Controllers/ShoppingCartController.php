@@ -26,9 +26,9 @@ class ShoppingCartController extends Controller
         return view('index', ['products'=>$products]);
     }
 
-    public function hiquipview_product(Items $product){
-        $products = Items::all();
-        return view('shop.product',['products'=>$products]);
+    public function hiquipview_product($id){
+        $product = Items::findorfail($id);
+        return view('shop.product',['product'=>$product]);
     }
 
     public function index(Items $post)
