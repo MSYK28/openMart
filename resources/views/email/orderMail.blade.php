@@ -3,10 +3,11 @@
 
 
 <b>Phone</b> {{ $checkout['phone']}}<br/>
-<b>Payment_Method</b> {{ $checkout['fav_language']}}<br/>
+<b>Payment Method</b> {{ $checkout['fav_language']}}<br/>
+<b>Grand Total</b>Ksh. {{ $checkout['grand_total']}}<br/>
 <b>Subject</b> Order Confirmation<br/>
 
-This is an email to confirm that it was you who ordered items from OpenMart.If not contact us to resolve the issue.
+This is an email to confirm that it was you who ordered items from OpenMart. If not, contact us to resolve the issue.
 
 We also like to inform you that we have a 30 day return policy on which past date will not be refundable..
 

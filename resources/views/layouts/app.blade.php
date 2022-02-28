@@ -77,7 +77,7 @@
                         <li>
                             <a href="{{ url('/cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
-                                Cart ({{ \Gloudemans\Shoppingcart\Facades\Cart::getcontent()->count() }})
+                                Cart ({{ \Cart::getcontent()->count() }})
                             </a>
                         </li>
                         <!-- Authentication Links -->
@@ -97,7 +97,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

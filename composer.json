@@ -6,15 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "bumbummen99/shoppingcart": "*",
         "darryldecode/cart": "^4.2",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "jeroennoten/laravel-adminlte": "^3.8",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "livewire/livewire": "^2.10",
         "santigarcor/laratrust": "^7.0"
     },
     "require-dev": {

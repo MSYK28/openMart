@@ -90,11 +90,23 @@
                     <input type="number" name="phone" id="phone" placeholder="Phone number" class="" value="{{ old('phone')}}"><br>
                     <small>Format: 07-2456-7890</small>
                 </div>
-
-                <div>
-                    <input type="hidden" name="grand_total">
-                </div>
-
+                @if (session()->has('coupon'))
+                     @php $cartSubTotal= \Cart::getTotal();
+                     $coupon = session()->get('coupon')['discount'];
+                     $discount = 0.00;
+                     $total = $cartSubTotal - ($discount + $coupon);  
+                     @endphp
+                
+                @else
+                
+                    @php $cartSubTotal= \Cart::getTotal();
+                     $discount = 0.00;
+                     $total = $cartSubTotal - ($discount); @endphp
+                
+                @endif
+                 <div>
+                    <input type="hidden" name="grand_total" value="{{ $total }}">
+                </div> 
                  <button type="submit" class="normal">Complete Order</button>
 
             </form>
@@ -143,7 +155,7 @@
                 </tr>
                 @endif
 
-                    @php echo $total; @endphp
+                    
             </table>
            
         </div>

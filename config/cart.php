@@ -1,8 +1,8 @@
 <?php
 
-use Money\Money;
+// use Money\Money;
 
-return [
+// return [
 
     /*
     |--------------------------------------------------------------------------
@@ -14,59 +14,60 @@ return [
     |
     */
 
-    'rounding' => Money::ROUND_UP,
+    // 'rounding' => Money::ROUND_UP,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default tax rate
-    |--------------------------------------------------------------------------
-    |
-    | This default tax rate will be used when you make a class implement the
-    | Taxable interface and use the HasTax trait.
-    |
-    */
+    // /*
+    // |--------------------------------------------------------------------------
+    // | Default tax rate
+    // |--------------------------------------------------------------------------
+    // |
+    // | This default tax rate will be used when you make a class implement the
+    // | Taxable interface and use the HasTax trait.
+    // |
+    // */
 
-    'tax' => 0.21,
+    // 'tax' => 0.21,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Shoppingcart database settings
-    |--------------------------------------------------------------------------
-    |
-    | Here you can set the connection that the shoppingcart should use when
-    | storing and restoring a cart.
-    |
-    */
+    
+    // |--------------------------------------------------------------------------
+    // | Shoppingcart database settings
+    // |--------------------------------------------------------------------------
+    // |
+    // | Here you can set the connection that the shoppingcart should use when
+    // | storing and restoring a cart.
+    // |
+    
 
-    'database' => [
+    // 'database' => [
 
-        'connection' => null,
+    //     'connection' => null,
 
-        'tables' => [
-            'cart' => 'cart',
-            'cart_item' => 'cart_item'
-        ],
+    //     'tables' => [
+    //         'cart' => 'cart',
+    //         'cart_item' => 'cart_item'
+    //     ],
 
-    ],
+    // ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default number format
-    |--------------------------------------------------------------------------
-    |
-    | This defaults will be used for the formatted numbers if you don't
-    | set them in the method call.
-    |
-    */
+    // /*
+    // |--------------------------------------------------------------------------
+    // | Default number format
+    // |--------------------------------------------------------------------------
+    // |
+    // | This defaults will be used for the formatted numbers if you don't
+    // | set them in the method call.
+    // |
+    // */
 
-    'format' => [
+    // // 'format' => [
 
-        'decimals' => 2,
+    // //     'decimals' => 2,
 
-        'decimal_point' => '.',
+    // //     'decimal_point' => '.',
 
-        'thousand_separator' => ',',
+    // //     'thousand_separator' => ',',
 
-    ],
+    // ],
 
-];
+//];
+ 

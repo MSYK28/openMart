@@ -10,7 +10,7 @@ use App\Models\Voucher;
 use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Gloudemans\Shoppingcart\Facades\Cart;
+//use Gloudemans\Shoppingcart\Facades\Cart;
 use Image;
 use File;
 use Session;
@@ -20,7 +20,7 @@ class ShoppingCartController extends Controller
     public function hiquipview(){
 
         $products = Items::all();
-        $cart = Cart::getcontent();
+        $cart = \Cart::getcontent();
 
        //dd($cart);
         return view('shop.shop',['products'=>$products, 'cart'=>$cart]);
@@ -135,7 +135,8 @@ class ShoppingCartController extends Controller
                         [
                             'phone'=> 'required|regex:/(07)[0-9]{8}/',
                             'location'=> 'required|max:255',
-                            'fav_language' =>'required'
+                            'fav_language' =>'required',  
+                            'grand_total' => 'required'                        
                         ]);
 
                     $order = new Order();
@@ -145,7 +146,7 @@ class ShoppingCartController extends Controller
                     $order->location = $request->input('location');
                     $order->payment_method = $request->input('fav_language');
 
-                    //$order->grand_total = \Cart::session(auth()->id())->getTotal();
+                    $order->grand_total = $request->input('grand_total');;
                     $order->user_id = auth()->id();
 
                     $order->save();
@@ -155,6 +156,12 @@ class ShoppingCartController extends Controller
                     
                     foreach($cart as $item){
 
+                        
+                        $product_attribute = Items::where('id', $item->id)->first();
+                        if($product_attribute){
+                            $stock = $product_attribute->quantity - (int) $item['quantity'];
+                            $product_attribute->update(['quantity' => $stock]);
+                        }
                         $order->items()->attach($item->id, ['order_id'=>$order->id,'quantity'=> $item->quantity ]);
                     }
 
