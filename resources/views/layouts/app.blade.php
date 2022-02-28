@@ -76,14 +76,17 @@
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
 
+                        @if(\Cart::getcontent()->count() > 0)
+
                         <li>
-                            <a href="{{ url('/cart') }}">
+                            <a href="{{ route('cart.cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
 
                                 Cart <span class="badge badge-warning">{{ \Cart::getcontent()->count() }}</span>
 
                             </a>
                         </li>
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -113,7 +116,6 @@
                             </li>
 
                         @endguest
-
                     </ul>
                 </div>
             </div>

@@ -144,7 +144,7 @@ class ShoppingCartController extends Controller
                 public function checkout(){
 
                      //$cartSubTotal= \Cart::getTotal(); 
-                    return view('cart.checkout', compact(' $cartSubTotal'));
+                    return view('cart.checkout');
                 }
 
 
