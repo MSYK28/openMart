@@ -14,6 +14,7 @@ use Illuminate\Contracts\Mail\Mailable;
 use Image;
 use File;
 use Session;
+use DB;
 
 class ShoppingCartController extends Controller
 {
@@ -207,21 +208,36 @@ class ShoppingCartController extends Controller
 
                     }
                     //empty cart
-                    \Cart::clear();
+                   \Cart::clear();
                     //clear coupon
-                     session()->forget('coupon');
+                    session()->forget('coupon');
+
+                    Session::put('order',$order->id);
+
 
 
                     /*take user to thank you
                     return "order completed,thank you for order";*/
 
-                    return redirect()->route('shop');
+                    return redirect('/finish');
 
                 }
 
                 public function receipt(){
 
-                    return view('shop.wishlist');
+                    $session = Session::get('order');
+                    $orders = Order::where('id', $session)->get();
+                    
+                    //$receipt = DB::select('select * from users where id = :id', ['id' => $session]);
+                    $receipt = DB::table('order_lists')->where('order_id', $session)->get();
+                    $results = DB::table('items')
+                                ->join('order_lists', 'items.id', '=', 'order_lists.item_id')
+                                ->where('order_lists.order_id', $session)
+                                ->get();
+
+                    //Session::flush();
+
+                    return view('cart.finish', compact('receipt', 'session', 'orders', 'results'));
 
                 }
 }

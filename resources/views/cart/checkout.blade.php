@@ -108,6 +108,7 @@
             @endif
 
             </form>
+        </table>
     </div>
 
     <div class="subtotal">

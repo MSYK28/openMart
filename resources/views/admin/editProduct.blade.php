@@ -1,5 +1,6 @@
 @extends('admin.adminLayout')
 @section('content')
+
 <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -16,7 +17,7 @@
       </div><!-- /.container-fluid -->
     </section>
 
-    <section class="content">
+    <section class="content p-5">
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary">
