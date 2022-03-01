@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CouponsController;
+use App\Http\Controllers\WishlistController;
 use GuzzleHttp\Middleware;
 
 
@@ -30,6 +31,13 @@ Route::group(['middleware' => ['auth', ]], function() {
         Route::get('/home', function () {return view('index');});
 });
 
+//WISHLIST CONTROLLER
+Route::get('/wishlist/view', [WishlistController::class, 'index'])->name('wishlist.view');
+// Route::get('/addToWishlits', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+Route::post('/wishlist/', [WishlistController::class, 'store'])->name('wishlist.add');
+
+
+
 
 //SHOPPING CONTROLLER
 Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
@@ -46,6 +54,7 @@ Route::get('/cart', [ShoppingCartController::class, 'cart'])->name('cart.cart');
 Route::post('/coupon', [CouponsController::class, 'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.destroy');
 Route::get('/finish',[ShoppingCartController::class, 'receipt'])->name('cart.finish');
+
 
 Route::get('/checkout', function() {
         return view('cart.checkout');
@@ -65,10 +74,10 @@ Route::get('/admin/restore/user/{id}', [ProductsController::class, 'user_restore
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
+        Route::get('/chart', [App\Http\Controllers\ProductsController::class, 'chart'])->name('admin.datatables.chart');
         Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable')->name('admin.products');
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
-
 
 // STATIC PAGES
 Route::get('/about', function () {return view('about');});

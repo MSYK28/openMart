@@ -28,7 +28,6 @@
             <tbody>
                 <tr>
                     <td>
-
                         Latitude: -1.311528 / S 1° 18' 41.5'' <br>
                         Longitude: 36.815514 / E 36° 48' 55.848'' <br>
                         Strathmore University, Ole Sangale Link Road, Nairobi, P. O. BOX
@@ -184,7 +183,5 @@
             </div>
         </form>
     </div>
-
-
 </section>
 @endsection

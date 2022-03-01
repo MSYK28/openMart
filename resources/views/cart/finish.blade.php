@@ -185,6 +185,7 @@
 </div>
 
 <div class="button home-button">
+
     <a href="/" class="btn btn-md btn-primary">
         Go back home
     </a>
