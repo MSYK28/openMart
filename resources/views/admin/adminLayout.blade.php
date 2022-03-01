@@ -22,19 +22,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -45,8 +47,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ url('/admin/dashboard') }}" class="nav-link">Home</a>
@@ -56,6 +57,9 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ url('/admin/datatables') }}" class="nav-link">Data Tables</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ url('/admin/chart') }}" class="nav-link">Chart</a>
                 </li>
             </ul>
 
@@ -99,8 +103,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">Call me whenever you can...</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -117,8 +120,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
-                                        <span class="float-right text-sm text-muted"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">I got your message bro</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -230,13 +232,13 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <a href="{{ url('/admin/create') }}" class="nav-link active">
-                   <i class="nav-icon fas fa-tachometer-alt"></i>
-                   <p>
-                       Add Products
-                       <i class="right fas fa-angle-left"></i>
-                   </p>
-               </a>
+                        <a href="{{ url('/admin/create') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Add Products
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
                         <li class="nav-item menu-open">
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
@@ -249,22 +251,19 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="{{ asset('/admin/datatables') }}"
-                                                class="nav-link">
+                                            <a href="{{ asset('/admin/datatables') }}" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Products</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ asset('/admin/datatables/usersTable') }}"
-                                                class="nav-link">
+                                            <a href="{{ asset('/admin/datatables/usersTable') }}" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Users</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ asset('/admin/datatables/ordersTable') }}"
-                                                class="nav-link">
+                                            <a href="{{ asset('/admin/datatables/ordersTable') }}" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Orders</p>
                                             </a>
@@ -273,6 +272,13 @@
                                 </li>
                             </ul>
                         </li>
+                        <a href="" class="nav-link">
+                            <i class='bx bxs-bar-chart-alt-2'></i>
+                            <p>
+                                Chart
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

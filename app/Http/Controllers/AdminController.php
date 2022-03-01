@@ -280,7 +280,7 @@ class AdminController extends Controller
         $products->save();
 
         Session::flash('msg','Product updated successfully');
-        return redirect()->back();
+        return redirect('/admin/datatables/productsTable');
     }
     public function edit_order($id){
 

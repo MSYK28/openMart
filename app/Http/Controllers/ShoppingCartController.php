@@ -52,35 +52,9 @@ class ShoppingCartController extends Controller
         return view('shop.product', compact('post'));
     }
 
-    // public function cart()
-    // {
-    //     return view('cart.cart');
-    // }
-
     public function add_to_cart($id)
     {
-
-        // dd($product);
-
         $product = Items::findOrFail($id);
-        // $cart = session()->get('cart', []);
-
-        // //add to cart
-        // if (isset($cart[$id])) {
-        //     $cart[$id]['quantity']++;
-        // } else {
-        //     $cart[$id] = [
-        //         'price' => $product->price,
-        //         'name  '=> $product->name,
-        //         'quantity'=> 1,
-        //         'image' => $product->item_img
-        //     ];
-
-        // }
-
-        //     session()->put('cart', $cart);
-        //     return redirect()->back()->with('success', 'Product added to cart successfully!');
-
         
        \Cart::add(
             $product->id,
@@ -95,133 +69,97 @@ class ShoppingCartController extends Controller
 
     }
 
-        public function cart(){
+    public function cart(){
 
-            $cart = \Cart::getcontent();
+        $cart = \Cart::getcontent();
 
-            return view('cart.cart',compact('cart'));
-        }
-        // public function wishlist(){
-            
-        // }
+        return view('cart.cart',compact('cart'));
+    }
 
+    public function cart_remove($itemId)
+    {
+        $cart = \Cart::remove($itemId);
 
-        public function cart_remove($itemId)
-        {
+        return back();
+    }
 
-            // if ($request->id) {
-            //     $cart = session()->get('cart');
-            //     if (isset($cart[$request->id])) {
-            //         unset($cart[$request->id]);
-            //         session()->put('cart', $cart);
-            //     }
-            //     session()->flash('success', 'Product removed successfully');
-            // }
-             $cart = \Cart::remove($itemId);
+    public function cart_update($rowId)
+    {
 
-                return back();
-        }
-            public function cart_update($rowId){
-
-                // if($request->id && $request->quantity){
-                //     $cart = session()->get('cart');
-                //     $cart[$request->id]["quantity"] = $request->quantity;
-                //     session()->put('cart', $cart);
-                //     session()->flash('success', 'Cart updated successfully');
-                // }
-
-                   \Cart::update($rowId, ['quantity'=> array(
-                'relative' => false,
-                'value' => request('quantity')
-                 )
-                 ]);
+        \Cart::update($rowId, ['quantity'=> array(
+            'relative' => false,
+            'value' => request('quantity')
+         )
+         ]);
 
         return back();
 
+    }
 
-                return back();
-            }
-
-                public function checkout(){
-
-                     //$cartSubTotal= \Cart::getTotal(); 
-                    return view('cart.checkout');
-                }
+    public function checkout()
+    {
+             //$cartSubTotal= \Cart::getTotal(); 
+        return view('cart.checkout');
+    }
 
 
 
-                public function checkout_order(Request $request){
+    public function checkout_order(Request $request)
+    {
+        $checkout = $this->validate($request,
+            [
+                'phone'=> 'required|regex:/(07)[0-9]{8}/',
+                'location'=> 'required|max:255',
+                'fav_language' =>'required',  
+                'grand_total' => 'required'                        
+            ]);
 
-                   
+        $order = new Order();
 
+        $order->phone_number =$request->input('phone');
+        $order->location = $request->input('location');
+        $order->payment_method = $request->input('fav_language');
 
-                    $checkout = $this->validate($request,
-                        [
-                            'phone'=> 'required|regex:/(07)[0-9]{8}/',
-                            'location'=> 'required|max:255',
-                            'fav_language' =>'required',  
-                            'grand_total' => 'required'                        
-                        ]);
+        $order->grand_total = $request->input('grand_total');;
+        $order->user_id = auth()->id();
 
-                    $order = new Order();
-
-
-                    $order->phone_number =$request->input('phone');
-                    $order->location = $request->input('location');
-                    $order->payment_method = $request->input('fav_language');
-
-                    $order->grand_total = $request->input('grand_total');;
-                    $order->user_id = auth()->id();
-
-                    $order->save();
-
-                    //save order items
-                    $cart = \Cart::getContent();
+        $order->save();
+                //save order items
+        $cart = \Cart::getContent();
                     
-                    foreach($cart as $item){
+        foreach($cart as $item){
 
-                        
-                        $product_attribute = Items::where('id', $item->id)->first();
-                        if($product_attribute){
-                            $stock = $product_attribute->quantity - (int) $item['quantity'];
-                            $product_attribute->update(['quantity' => $stock]);
-                        }
-                        $order->items()->attach($item->id, ['order_id'=>$order->id,'quantity'=> $item->quantity ]);
-                    }
-
-
-
-                    //payment
-                    /* if($request->input('payment_method') == 'mpesa'){
-                         return redirect()->route('mpesa.checkout');
-                     }*/
+            $product_attribute = Items::where('id', $item->id)->first();
+            if($product_attribute){
+                $stock = $product_attribute->quantity - (int) $item['quantity'];
+                $product_attribute->update(['quantity' => $stock]);
+            }
+            $order->items()->attach($item->id, ['order_id'=>$order->id,'quantity'=> $item->quantity ]);
+        }
                     //send email to customer
-                    if($order->save() == true){
-                        $recepient = Auth::user()->email;
+        if($order->save() == true){
+            $recepient = Auth::user()->email;
 
-                        Mail::to($recepient)->send(new OrderMail($checkout));
-                        Session::flash('msg','Order successful');
+            Mail::to($recepient)->send(new OrderMail($checkout));
+            Session::flash('msg','Order successful');
 
-                    }else{
-                        echo "Error";
+        }
+        else
+        {
+            echo "Error";
+        }
+                //empty cart
+        \Cart::clear();
+                //clear coupon
+        session()->forget('coupon');
 
-                    }
-                    //empty cart
-                    \Cart::clear();
-                    //clear coupon
-                     session()->forget('coupon');
+        return redirect()->route('cart.finish');
 
+    }
 
-                    /*take user to thank you
-                    return "order completed,thank you for order";*/
+    public function receipt(){
 
-                    return redirect()->route('shop');
+        return view('shop.wishlist');
 
-                }
-
-                public function receipt(){
-
-                    return view('shop.wishlist');
-
-                }
+    }
 }

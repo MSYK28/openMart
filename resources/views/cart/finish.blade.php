@@ -160,7 +160,7 @@
 </div>
 
 <div class="button home-button">
-    <a href="" class="btn btn-md btn-primary">
+    <a href="{{ url('/') }}" class="btn btn-md btn-primary">
         Go back home
     </a>
 </div>
