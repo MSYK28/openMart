@@ -55,14 +55,15 @@ Route::get('/checkout', function() {
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
 Route::post('/admin/addProduct', [AdminController::class, 'addproduct'])->name('create.product');
-// Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
+Route::get('/admin/editProduct/{id}', [AdminController::class, 'edit_hiquip'])->name('product.edit');
+Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
 Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
 
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
-        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable');
+        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable')->name('admin.products');
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
 

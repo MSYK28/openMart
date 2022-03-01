@@ -56,6 +56,19 @@ button.normal {
     transition: 0.2s;
 }
 
+.normal {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+}
+
 button.white {
     font-size: 14px;
     font-weight: 600;

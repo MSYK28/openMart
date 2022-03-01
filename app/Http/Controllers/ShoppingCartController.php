@@ -31,7 +31,8 @@ class ShoppingCartController extends Controller
 
     public function hiquipviewindex(){
         $products = Items::all();
-        return view('index', ['products'=>$products]);
+        $cart = \Cart::getcontent();
+        return view('index', ['products'=>$products, 'cart'=>$cart]);
     }
 
     public function hiquipview_product(Items $product){
@@ -212,12 +213,15 @@ class ShoppingCartController extends Controller
 
 
                     /*take user to thank you
-                    return "order completed,thak you for order";*/
+                    return "order completed,thank you for order";*/
 
                     return redirect()->route('shop');
 
                 }
 
+                public function receipt(){
 
+                    return view('shop.wishlist');
 
-            }
+                }
+}
