@@ -73,5 +73,6 @@ Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
 Route::get('/product', function () {return view('shop.product');});
 Route::get('/wishlist', function () {return view('shop.wishlist');});
+Route::get('/finish', function () {return view('cart.finish');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 // Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
