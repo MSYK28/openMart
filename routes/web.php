@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CouponsController;
+use App\Http\Controllers\WishlistController;
 use GuzzleHttp\Middleware;
 
 
@@ -29,6 +30,13 @@ Route::group(['middleware' => ['auth', ]], function() {
         Route::get('/', function () {return view('index');});
         Route::get('/home', function () {return view('index');});
 });
+
+//WISHLIST CONTROLLER
+Route::get('/wishlist/view', [WishlistController::class, 'index'])->name('wishlist.view');
+// Route::get('/addToWishlits', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+Route::post('/wishlist/', [WishlistController::class, 'store'])->name('wishlist.add');
+
+
 
 
 //SHOPPING CONTROLLER

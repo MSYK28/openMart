@@ -52,4 +52,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
         'deleted_at'
     ];
+
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class, 'userID');
+    }
 }

@@ -11,31 +11,38 @@ use Session;
 
 class WishlistController extends Controller
 {
-    public function index()
-    {
-        $wishlist = Wishlist::where('userId', Auth::user())->get();
-
-        return view('shop.wishlist',compact('wishlist'));
-
+    public function __construct(){
+        $this->middleware(['auth']);
     }
 
-    public function addToWishlist($id)
-    {
-        $product = Items::findOrFail($id);
-        $wishlist = session()->get('wishlist', []);
+    public function index(){
+        $user = Auth::user();
+        $wishlist = Wishlist::where("userID", "=", $user->id)->orderby('id', 'desc')->paginate(10);
+        return view('shop.wishlist', compact('wishlist'));
+    }
 
-        //add to cart
-        if (isset($wishlist[$id])) {
+    public function store(Request $request){
+        //Validating title and body field
+        // $this->validate($request, array(
             
-        } else {
-            $wishlist[$id] = [
-                "name " => $product->name,
-                "price" => $product->price,
-                "image" => $product->item_img
-            ];
-        }
+        //     'itemID'=>'required',
+        // ));
 
-        session()->put('wishlist', $wishlist);
-        return redirect()->back()->with('success', 'Product added to wishlist successfully!');
+        $user = Auth::User();
+
+        $wishlist = new Wishlist;
+
+        $wishlist->userID = $user->id;
+        $wishlist->itemID = $request->itemID;
+        
+        $wishlist->save();
+        return redirect('/wishlist/view')->with('flash_message', 'Item, '.$wishlist->product->name.' Added to your wishlist.');
+    }
+
+    public function destroy($id){
+        $wishlist = Wishlist::findOrFail($id);
+        $wishlist->delete();
+
+        return redirect()->route('wishlist.index')->with('flash_message', 'Item deleted successfully');
     }
 }

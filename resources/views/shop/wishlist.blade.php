@@ -11,19 +11,9 @@
           <div class="container my-5">
             <div class="card shadow">
               <div class="card-body">
-
-                @if (session('wishlist'))
-                @foreach (session('wishlist') as $id => $itemDetails)
-              
-                  <img src="/assets/images/img/products/{{ $itemDetails['image'] }}" alt="">
-                  
-                  <p>{{ $itemDetails['name '] }}</p>
-                  <p>{{ $itemDetails['price'] }}</p>
-
-                  <button class="btn btn-danger remove-from-cart" aria-hidden="true">
-                    Remove
-                  </button>
-
+                @if (Auth::user()->wishlist->count()>0)
+                @foreach ($wishlist as $wl)
+                {{$wl->product->name}}
                 @endforeach
                 @else
                 <h4>There are no products in your Wishlist.</h4>
@@ -93,12 +83,12 @@
                 <!-- <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
               </td> -->
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Gucci</td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="btn btn-sm btn-warning button">Add to Cart</a>
-                <!-- <example-component></example-component> -->
-              </td>
-            </tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Gucci</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="btn btn-sm btn-warning button">Add to Cart</a>
+                  <!-- <example-component></example-component> -->
+                </td>
+              </tr>
 
               <!-- More people... -->
             </tbody>
