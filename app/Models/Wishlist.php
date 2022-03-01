@@ -11,6 +11,8 @@ class Wishlist extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'wishlist';
+
 
     protected $fillable = [
         'userID',
@@ -22,4 +24,12 @@ class Wishlist extends Model
 
         'deleted_at'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'userID');
+    }
+
+    public function product(){
+        return $this->belongsTo(Items::class, 'itemID');
+    }
 }

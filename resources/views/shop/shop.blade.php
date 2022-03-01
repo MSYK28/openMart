@@ -16,8 +16,8 @@
     <div class="pro-container">
         @foreach ($products as $product)
 
-        <div class="pro" onclick="window.location.href='/product/{id}';">
-            <img src="/assets/images/img/products/{{ $product->item_img }}" alt="">
+        <div class="pro">
+            <a href="{{"/product/".$product['id'] }}"> <img src="/assets/images/img/products/{{ $product->item_img }}" alt=""></a>
             <div class="des">
                 <span>{{ $product->brand }}</span>
                 <h5>{{ $product->name }}</h5>
@@ -38,8 +38,7 @@
                 @else
                 <a href=""><i class='bx bx-cart-alt cart'></i></a>
 
-                <a href="{{ route('cart.add', $product->id) }}" class="btn btn-warning btn-block text-center"
-                    role="button">
+                <a href="{{ route('cart.add', $product->id) }}" class="btn btn-warning btn-block text-center" role="button">
                     Add to cart
                 </a>
                 @endif
