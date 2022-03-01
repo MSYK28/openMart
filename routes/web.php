@@ -53,6 +53,8 @@ Route::post('/checkout_order/', [ShoppingCartController::class, 'checkout_order'
 Route::get('/cart', [ShoppingCartController::class, 'cart'])->name('cart.cart');
 Route::post('/coupon', [CouponsController::class, 'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.destroy');
+Route::get('/finish',[ShoppingCartController::class, 'receipt'])->name('cart.finish');
+
 
 Route::get('/checkout', function() {
         return view('cart.checkout');
@@ -82,6 +84,5 @@ Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
 Route::get('/product', function () {return view('shop.product');});
-Route::get('/wishlist', function () {return view('shop.wishlist');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 // Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
