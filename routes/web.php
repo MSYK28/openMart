@@ -64,6 +64,7 @@ Route::get('/admin/restore/user/{id}', [ProductsController::class, 'user_restore
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
+        Route::get('/chart', [App\Http\Controllers\ProductsController::class, 'chart'])->name('admin.datatables.chart');
         Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable')->name('admin.products');
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });

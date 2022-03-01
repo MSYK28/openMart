@@ -80,7 +80,7 @@ class ShoppingCartController extends Controller
     {
         $cart = \Cart::remove($itemId);
 
-        return back();
+        return back()->with('success', 'Product removed successfully!');
     }
 
     public function cart_update($rowId)
@@ -92,7 +92,7 @@ class ShoppingCartController extends Controller
          )
          ]);
 
-        return back();
+        return back()->with('updated', 'Product updated successfully!');
 
     }
 

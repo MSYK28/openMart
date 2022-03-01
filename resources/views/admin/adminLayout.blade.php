@@ -59,7 +59,7 @@
                     <a href="{{ url('/admin/datatables') }}" class="nav-link">Data Tables</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ url('/admin/chart') }}" class="nav-link">Chart</a>
+                    <a href="{{ url('/admin/chart') }}" class="nav-link">Charts</a>
                 </li>
             </ul>
 
@@ -236,7 +236,6 @@
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Add Products
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <li class="nav-item menu-open">
@@ -272,10 +271,10 @@
                                 </li>
                             </ul>
                         </li>
-                        <a href="" class="nav-link">
+                        <a href="{{ asset('/admin/datatables/chart') }}" class="nav-link">
                             <i class='bx bxs-bar-chart-alt-2'></i>
                             <p>
-                                Chart
+                                Charts
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -312,13 +311,9 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2021 <a href="https://adminlte.io">Abidas.io</a>.</strong> All rights
-            reserved.
+            <p>Copyright &copy; 2021 <a href="https://adminlte.io">Abidas.io</a>.All rights
+            reserved.</p> 
         </footer>
     </div>
     @yield('scripts')
