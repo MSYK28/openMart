@@ -59,6 +59,8 @@ Route::get('/admin/editProduct/{id}', [AdminController::class, 'edit_hiquip'])->
 Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
 Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
+Route::get('/admin/disable/user/{id}', [ProductsController::class, 'user_disable'])->name('user.disable');
+        Route::get('/admin/restore/user/{id}', [ProductsController::class, 'user_restore'])->name('user.restore');
 
 Route::prefix('admin/datatables')->group(
     function(){

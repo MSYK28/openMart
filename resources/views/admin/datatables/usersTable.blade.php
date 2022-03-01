@@ -75,10 +75,15 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
+                                 @if($user->deleted_at == null)
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <a href="#" class="btn-sm btn-danger">Disable</a>
-                                    <a href="#" class="btn-sm btn-success">Enable</a>
+                                    <a href="{{ "/admin/disable/user/".$user['id'] }}" class="btn-sm btn-danger" onclick="return confirm('Are You Sure You want to Disable User?')">Disable</a>
                                 </td>
+                                @else
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <a href="{{ "/admin/restore/user/".$user['id'] }}"class="btn-sm btn-success" onclick="return confirm('Are You Sure You want to Restore User?')">Enable</a>
+                                </td>
+                                @endif
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 </td>
