@@ -63,14 +63,17 @@ Route::get('/checkout', function() {
 Route::get('/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/admin/create', [ProductsController::class, 'index']);
 Route::post('/admin/addProduct', [AdminController::class, 'addproduct'])->name('create.product');
-// Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
+Route::get('/admin/editProduct/{id}', [AdminController::class, 'edit_hiquip'])->name('product.edit');
+Route::post('/admin/editProduct', [AdminController::class, 'editproduct'])->name('edit.product');
 Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'create']);
 Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
+Route::get('/admin/disable/user/{id}', [ProductsController::class, 'user_disable'])->name('user.disable');
+        Route::get('/admin/restore/user/{id}', [ProductsController::class, 'user_restore'])->name('user.restore');
 
 Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
-        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable');
+        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable')->name('admin.products');
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
 
@@ -81,5 +84,6 @@ Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
 Route::get('/product', function () {return view('shop.product');});
 Route::get('/wishlist', function () {return view('shop.wishlist');});
+Route::get('/finish', function () {return view('cart.finish');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 // Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);

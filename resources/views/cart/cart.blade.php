@@ -77,7 +77,7 @@
                         <a href="{{ url('/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue
                             Shopping</a>
 
-                        <a href="{{ route('cart.checkout')}}" class="btn btn-success">
+                        <a href="{{ url('/checkout') }}" class="btn btn-success">
                             Proceed to Checkout
                             <i class="fa fa-angle-right"></i>
                         </button>

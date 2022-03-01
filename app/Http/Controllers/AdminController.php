@@ -9,11 +9,11 @@ use App\Models\Items;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-//use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Session;
 use DB;
-use Image;
+
 
 class AdminController extends Controller
 {
@@ -40,7 +40,7 @@ class AdminController extends Controller
         $trashes = User::onlyTrashed()->paginate(5);
         $users = User::whereHas('roles',
             function($q){
-            $q->whereIn('name', ['user'])->orWhereIn('name', ['brand']);
+            $q->whereIn('name', ['user']);
         })->withoutTrashed()->paginate(5);
         return view('admin.admin_userview2',['users'=>$users])->withUser($user)->with(['trashes'=>$trashes]);
     }
@@ -115,9 +115,9 @@ class AdminController extends Controller
         if($request->hasFile('image')){
             $product_img = $request->file('image');
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
-            Image::make($product_img)->resize(400,400)->save( public_path('/assets/images/img/products/' . $filename ) );
+            Image::make($product_img)->resize(400,400)->save( public_path('assets/images/img/products/' . $filename) );
         }
-
+        
 
         //store product
         $product = Items::create([
@@ -244,32 +244,37 @@ class AdminController extends Controller
      public function edit_hiquip($id){
 
         $user = Auth::user();
-        $products = Products::findOrFail($id);
-        return view('admin.admin_editProduct',['products'=>$products])->withUser($user);
+        $product = Items::findOrFail($id);
+        return view('admin.editProduct',['product'=>$product])->withUser($user);
     }
     public function editproduct(Request $request){
 
-        $users = Auth::user();
+        //$users = Auth::user();
 
-        $this->validate($request,
+        $editProduct = $this->validate($request,
             ['product_name'=> 'required|max:255',
-            'category'=> 'required|max:255',
+            'quantity'=> 'required|integer',
              'description'=> 'required',
-              'price'=> 'required|integer',
+             'price'=> 'required|integer',
 
             ]);
+
         if($request->hasFile('product_img')){
             $product_img = $request->file('product_img');
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
-            Image::make($product_img)->resize(400,400)->save( public_path('/upload/hiquip/' . $filename ) );
+            Image::make($product_img)->resize(400,400)->save( public_path('assets/images/img/products/' . $filename ) );
 
         }
 
+        
         $products = Items::findOrFail($request->id);
+        if($request->hasFile('product_img')){
 
-       // $products->product_img= $filename;
+        $products->item_img= $filename;
+        }
+
         $products->name= $request->product_name;
-        $products->category= $request->category;
+        $products->quantity= $request->quantity;
         $products->description=$request->description;
         $products->price = $request->price;
         $products->save();
