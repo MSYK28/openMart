@@ -48,12 +48,12 @@
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{ $user->email }}</div>
+                <div class="text-sm text-gray-900">{{ $user->email}}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                @if($user->isbanned == '0')
+                @if($user->deleted_at == null)
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Enabled </span>
-                @elseif($user->isbanned == '1')
+                @else
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"> Disabled </span>
                 @endif
               </td>
