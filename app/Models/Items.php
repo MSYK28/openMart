@@ -28,4 +28,8 @@ class Items extends Model
         'deleted_at'
     ];
 
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class, 'itemID');
+    }
+
 }

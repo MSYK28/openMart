@@ -20,7 +20,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-         $this->middleware(['auth','role:administrator']);
+         $this->middleware(['auth']);
         //  $this->middleware('role:user');
 
     }
@@ -29,9 +29,9 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
-//    public function editproduct() {
-//        return view('admin.editProduct');
-//    }
+    // public function editproduct() {
+    //     return view('admin.editProduct');
+    // }
 
     public function user_view(){
 
@@ -40,7 +40,7 @@ class AdminController extends Controller
         $trashes = User::onlyTrashed()->paginate(5);
         $users = User::whereHas('roles',
             function($q){
-            $q->whereIn('name', ['user'])->orWhereIn('name', ['brand']);
+            $q->whereIn('name', ['user']);
         })->withoutTrashed()->paginate(5);
         return view('admin.admin_userview2',['users'=>$users])->withUser($user)->with(['trashes'=>$trashes]);
     }
@@ -117,7 +117,7 @@ class AdminController extends Controller
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
             Image::make($product_img)->resize(400,400)->save( public_path('assets/images/img/products/' . $filename ) );
         }
-        
+
 
         //store product
         $product = Items::create([
@@ -266,7 +266,7 @@ class AdminController extends Controller
 
         }
 
-        
+
         $products = Items::findOrFail($request->id);
 
         $products->item_img= $filename;
@@ -277,7 +277,7 @@ class AdminController extends Controller
         $products->save();
 
         Session::flash('msg','Product updated successfully');
-        return redirect()->back();
+        return redirect('/admin/datatables/productsTable');
     }
     public function edit_order($id){
 

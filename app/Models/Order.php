@@ -18,8 +18,7 @@ class Order extends Model
         'payment_method',
         'phone_number',
         'location',
-        'is_paid',
-         'is_returned'
+        'is_returned'
     ];
 
      protected $dates = [
