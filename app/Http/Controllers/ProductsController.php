@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Items;
+use App\Models\Role;
+use Session;
+use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class ProductsController extends Controller
 {
@@ -22,9 +28,16 @@ class ProductsController extends Controller
 
     public function users()
     {
-         $users = User::all();
+          $user = Auth::user();
+         $users = User::whereHas('roles',
+            function($q){
+            $q->whereIn('name', ['user']);
+        })->get();
+          //$users = User::all();
 
-        return view('admin.datatables.usersTable', compact('users'));
+        return view('admin.datatables.usersTable',['users'=>$users])->withUser($user);
+
+        //return view('admin.datatables.usersTable', compact('users'));
     }
 
 
