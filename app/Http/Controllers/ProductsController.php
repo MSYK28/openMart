@@ -40,6 +40,24 @@ class ProductsController extends Controller
         //return view('admin.datatables.usersTable', compact('users'));
     }
 
+    public function user_disable($id){
+      
+      $users = User::findOrFail($id);
+      $users->delete();
+
+      Session::flash('msg','User successfully Disabled');
+      return redirect()->back();
+     
+    }
+    
+    public function user_restore($id){
+
+        $users = User::withTrashed()->findOrFail($id);
+        $users->restore();
+
+        Session::flash('msg','User successfully Restored');
+        return redirect()->back();
+    }
 
     public function datatables()
     {
