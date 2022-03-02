@@ -156,21 +156,8 @@ class ShoppingCartController extends Controller
 
                     Session::put('order',$order->id);
 
-            Mail::to($recepient)->send(new OrderMail($checkout));
-            Session::flash('msg','Order successful');
 
-        }
-        else
-        {
-            echo "Error";
-        }
-                //empty cart
-        \Cart::clear();
-                //clear coupon
-        session()->forget('coupon');
-
-
-                    return redirect('/finish');
+        return redirect('/finish');
 
 
     }
