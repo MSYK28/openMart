@@ -6,6 +6,11 @@
     <p>Use coupons for up to 70% off</p>
 </section>
 
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 
 <section id="product1" class="section-p1">
     <div class="pro-container">

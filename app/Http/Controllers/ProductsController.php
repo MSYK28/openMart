@@ -81,4 +81,9 @@ class ProductsController extends Controller
 
         return view('admin.datatables.ordersTable', compact('orders', 'products', 'users'));
     }
+
+    public function chart() 
+    {
+        return view('admin.datatables.chart');
+    }
 }
