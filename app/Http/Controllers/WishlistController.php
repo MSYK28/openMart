@@ -8,6 +8,13 @@ use App\Models\User;
 use App\Models\Items;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Models\Order;
+use App\Models\Voucher;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Mail\Mailable;
+use Image;
+use File;
 
 class WishlistController extends Controller
 {
@@ -17,6 +24,8 @@ class WishlistController extends Controller
 
     public function index(){
         $user = Auth::user();
+        $wishlist = new Wishlist;
+
         $wishlist = Wishlist::where("userID", "=", $user->id)->orderby('id', 'desc')->paginate(10);
         return view('shop.wishlist', compact('wishlist'));
     }
@@ -31,6 +40,7 @@ class WishlistController extends Controller
         $user = Auth::User();
 
         $wishlist = new Wishlist;
+        $wishlist = Wishlist::getcontent();
 
         $wishlist->userID = $user->id;
         $wishlist->itemID = $request->itemID;

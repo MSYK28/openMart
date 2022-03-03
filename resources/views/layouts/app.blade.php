@@ -80,14 +80,20 @@
                         <li><a href="{{ url('/about') }}">About</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
 
-                        @if(\Cart::getcontent()->count() > 0)
-
+                        @if(Wishlist::getcontent()->count() > 0)
                         <li>
                             <a href="{{ route('cart.cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
+                                Wishlist <span class="badge badge-warning">{{ Wishlist::getcontent()->count() }}</span>
+                            </a>
+                        </li>
+                        @endif
 
+                        @if(\Cart::getcontent()->count() > 0)
+                        <li>
+                            <a href="{{ route('cart.cart') }}">
+                                <i style="font-size:20px" class='bx bx-cart'></i>
                                 Cart <span class="badge badge-warning">{{ \Cart::getcontent()->count() }}</span>
-
                             </a>
                         </li>
                         @endif
