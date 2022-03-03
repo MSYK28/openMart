@@ -81,11 +81,7 @@ Route::prefix('admin/datatables')->group(
 Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
-<<<<<<< HEAD
-// Route::get('/product', function () {return view('shop.product');});
-// Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
-=======
+
 Route::get('/product', function () {return view('shop.product');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 // Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
->>>>>>> cbcc61be4cb5c3b7fbfcbfb55234d5c002aaa884
