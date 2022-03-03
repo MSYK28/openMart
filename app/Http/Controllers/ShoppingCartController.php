@@ -14,6 +14,7 @@ use Illuminate\Contracts\Mail\Mailable;
 use Image;
 use File;
 use Session;
+use DB;
 
 class ShoppingCartController extends Controller
 {
@@ -137,29 +138,46 @@ class ShoppingCartController extends Controller
             $order->items()->attach($item->id, ['order_id'=>$order->id,'quantity'=> $item->quantity ]);
         }
                     //send email to customer
-        if($order->save() == true){
-            $recepient = Auth::user()->email;
 
-            Mail::to($recepient)->send(new OrderMail($checkout));
-            Session::flash('msg','Order successful');
+                    if($order->save() == true){
+                        $recepient = Auth::user()->email;
 
-        }
-        else
-        {
-            echo "Error";
-        }
-                //empty cart
-        \Cart::clear();
-                //clear coupon
-        session()->forget('coupon');
+                        Mail::to($recepient)->send(new OrderMail($checkout));
+                        Session::flash('msg','Order successful');
 
-        return redirect()->route('cart.finish');
+                    }else{
+                        echo "Error";
+
+                    }
+                    //empty cart
+                   \Cart::clear();
+                    //clear coupon
+                    session()->forget('coupon');
+
+                    Session::put('order',$order->id);
+
+
+        return redirect('/finish');
+
 
     }
 
     public function receipt(){
 
-        return view('shop.wishlist');
+
+                    $session = Session::get('order');
+                    $orders = Order::where('id', $session)->get();
+                    
+                    //$receipt = DB::select('select * from users where id = :id', ['id' => $session]);
+                    $receipt = DB::table('order_lists')->where('order_id', $session)->get();
+                    $results = DB::table('items')
+                                ->join('order_lists', 'items.id', '=', 'order_lists.item_id')
+                                ->where('order_lists.order_id', $session)
+                                ->get();
+
+                    //Session::flush();
+
+                    return view('cart.finish', compact('receipt', 'session', 'orders', 'results'));
 
     }
 }

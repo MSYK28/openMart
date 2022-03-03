@@ -51,6 +51,8 @@ Route::post('/checkout_order/', [ShoppingCartController::class, 'checkout_order'
 Route::get('/cart', [ShoppingCartController::class, 'cart'])->name('cart.cart');
 Route::post('/coupon', [CouponsController::class, 'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class, 'destroy'])->name('coupon.destroy');
+Route::get('/finish',[ShoppingCartController::class, 'receipt'])->name('cart.finish');
+
 
 Route::get('/checkout', function() {
         return view('cart.checkout');
@@ -79,5 +81,11 @@ Route::prefix('admin/datatables')->group(
 Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
+<<<<<<< HEAD
 // Route::get('/product', function () {return view('shop.product');});
 // Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
+=======
+Route::get('/product', function () {return view('shop.product');});
+Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
+// Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);
+>>>>>>> cbcc61be4cb5c3b7fbfcbfb55234d5c002aaa884
