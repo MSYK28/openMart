@@ -166,19 +166,19 @@
                                                     </tr>
                                                     <!-- More people... -->
                                                 </tbody>
-
+                                                @endforeach
                                                 <tfoot>
                                                     <tr>
                                                         <td colspan="5" scope="col"
                                                             class="text-right px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider actions">
                                                             <h6>
                                                                 <strong style="color: black">Total:
-                                                                    Ksh.{{ number_format(\Cart::getTotal(), 2)}}</strong>
+                                                                    Ksh.{{ number_format($order->grand_total, 2)}}</strong>
                                                             </h6>
                                                         </td>
                                                     </tr>
                                                 </tfoot>
-                                                @endforeach
+                                                
 
                                             </table>
 
