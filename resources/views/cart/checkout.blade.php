@@ -69,7 +69,7 @@
         <table>
             <tr>
                 <td>Cart Subtotal</td>
-                <td>@php $cartSubTotal= \Cart::getTotal(); echo $cartSubTotal @endphp </td>
+                <td>Ksh. @php $cartSubTotal= \Cart::getTotal(); echo $cartSubTotal @endphp.00 </td>
             </tr>
             <tr>
                 <td>Shipping</td>
@@ -77,7 +77,7 @@
             </tr>
             <tr>
                 <td>Discount</td>
-                <td>@php $discount = 0.00; echo $discount @endphp</td>
+                <td>Ksh. @php $discount = 0.00; echo $discount @endphp.00</td>
             </tr>
             <tr>
                 @if (session()->has('coupon'))
@@ -92,18 +92,18 @@
                 </td>
 
                 <td>
-                    @php $coupon = session()->get('coupon')['discount']; echo $coupon; @endphp
+                    @php $coupon = session()->get('coupon')['discount']; echo $coupon; @endphp.00
                 </td>
 
             </tr>
             <tr>
                 <td><strong>Total</strong></td>
-                <td>@php $total = $cartSubTotal - ($discount + $coupon); echo $total; @endphp</td>
+                <td>Ksh. @php $total = $cartSubTotal - ($discount + $coupon); echo $total; @endphp.00</td>
             </tr>
             @else
             <tr>
                 <td><strong>Total</strong></td>
-                <td>@php $total = $cartSubTotal - ($discount); echo $total; @endphp</td>
+                <td>Ksh. @php $total = $cartSubTotal - ($discount); echo $total; @endphp.00</td>
             </tr>
             @endif
 
@@ -128,7 +128,7 @@
                 <div class="form-group">
                     <label for="username" class="sr-only">Phone Number
                     </label>
-                    <input type="number" name="phone" id="phone" placeholder="Format: 07-2456-7890" class="form-control"
+                    <input type="number" name="phone" id="phone" placeholder="Format: 2547-2456-7890" class="form-control"
                         value="{{ old('phone')}}"><br>
                 </div>
 
@@ -166,20 +166,10 @@
 
             @endif
             <div>
-                <input type="hidden" name="grand_total" value="{{ $total }}">
+                <input type="hidden" name="grand_total" value="{{ number_format($total, 2) }}">
             </div>
             <div class="pt-4">
-                <button type="submit" style="font-size: 14px;
-                            color: #000;
-                            font-weight: 600;
-                            padding: 15px 30px;
-                            background-color: #fff;
-                            border-radius: 4px;
-                            border: none;
-                            cursor: pointer;
-                            outline: none;
-                            transition: 0.2s;
-                        ">
+                <button type="submit" class="btn btn-warning" >
                     Complete Order
                 </button>
             </div>

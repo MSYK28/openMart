@@ -17,16 +17,18 @@
 </div>
 
 @if(Session::has('msg'))
-    <div class="m-5 alert alert-info alert-dismissible fade show m-5" role="alert">{{ Session::get('msg') }}</div>
+<div class="m-5 alert alert-info alert-dismissible fade show m-5" role="alert">{{ Session::get('msg') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
+</div>
 @endif
 @if(Session::has('no-msg'))
-    <p class="m-5 alert alert-success alert-dismissible fade show m-5" role="alert">{{ Session::get('no-msg') }}</p>
+<div class="m-5 alert alert-success alert-dismissible fade show m-5" role="alert">{{ Session::get('no-msg') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
+</div>
 @endif
 
 <!-- This example requires Tailwind CSS v2.0+ -->
@@ -35,7 +37,7 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200" id="table_id">
+                    <table class="min-w-full divide-y divide-gray-200 stripe" id="table_id">
                         <thead class="bg-gray-500">
                             <tr>
                                 <th scope="col"
@@ -56,9 +58,6 @@
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
                                     Action</th>
-                                <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Edit</span>
-                                </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -107,9 +106,6 @@
                                         onclick="return confirm('Are You Sure You want to Restore User?')">Enable</a>
                                 </td>
                                 @endif
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
                             </tr>
                             @endforeach
 

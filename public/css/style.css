@@ -35,6 +35,13 @@ p {
     margin: 15px 0 20px 0;
 }
 
+/* tr:nth-child(even) {
+    background-color: #ccc;
+}
+tr:nth-child(od) {
+    background-color: #fff;
+} */
+
 .section-p1 {
     padding: 40px 80px;
 }
