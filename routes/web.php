@@ -69,6 +69,8 @@ Route::get('/admin/create',[App\Http\Controllers\ProductsController::class, 'cre
 Route::post('/admin', [App\Http\Controllers\ProductsController::class, 'store']);
 Route::get('/admin/disable/user/{id}', [ProductsController::class, 'user_disable'])->name('user.disable');
 Route::get('/admin/restore/user/{id}', [ProductsController::class, 'user_restore'])->name('user.restore');
+Route::get('/admin/product/restore/{id}', [AdminController::class, 'restore_hiquip'])->name('admin.restore_hiquip');
+Route::get('/admin/product/disable/{id}', [AdminController::class, 'disable_hiquip'])->name('admin.disablehiquip');
 
 Route::prefix('admin/datatables')->group(
     function(){
@@ -85,8 +87,7 @@ Route::prefix('admin/datatables')->group(
 Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
-
 Route::get('/product', function () {return view('shop.product');});
-Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
+//Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 
 // Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);

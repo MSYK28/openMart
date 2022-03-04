@@ -31,7 +31,7 @@ class AdminController extends Controller
 
     // public function editproduct() {
     //     return view('admin.editProduct');
-    // }
+    // }e
 
     public function user_view(){
 
@@ -132,8 +132,7 @@ class AdminController extends Controller
 
 
        Session::flash('success','Product added successfull');
-       return redirect()->back();
-
+       return redirect('/admin/datatables/')->with('status', 'Product added');
    }
 
     public function passwordEdit($id){

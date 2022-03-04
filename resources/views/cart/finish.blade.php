@@ -166,7 +166,7 @@
                                                     <!-- More people... -->
                                                 </tbody>
                                                 @endforeach
-                                                @endforeach
+                                               
                                             </table>
 
                                         </div>
