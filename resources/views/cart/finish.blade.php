@@ -98,10 +98,11 @@
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div class="invoice-details">
                                         <div class="invoice-num">
-                                            <div>Receipt No.{{ $session }}</div>
+                                            <div>Receipt Number. {{ $session }}</div>
                                             @foreach ($orders as $order)
 
-                                            <div>Date: {{ $order->created_at }}</div>
+                                            <div>Date: {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}
+                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -116,7 +117,7 @@
                                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-                                            <table class="min-w-full divide-y divide-gray-200" id="table_id">
+                                            <table class="min-w-full divide-y divide-gray-200 stripe" id="table_id">
                                                 <thead class="bg-gray-50">
                                                     <tr>
                                                         <th scope="col"
@@ -138,35 +139,47 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200">
-                                                     @foreach($results as $result)
+                                                    @foreach($results as $result)
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="ml-4">
-                                                            
-
-                                                            <div class="text-sm font-medium text-gray-900">
-                                                                 {{ $result->name }}  </div>
-
+                                                                <div class="text-sm font-medium text-gray-900">
+                                                                    {{ $result->name }}
+                                                                </div>
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">  {{ $result->quantity}}</div>
+                                                            <div class="text-sm text-gray-900"> {{ $result->quantity}}
+                                                            </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            
-                                                            <div class="text-sm text-gray-900"> {{ $result->price }}</div>
-                                                            
+                                                            <div class="text-sm text-gray-900">Ksh.
+                                                                {{ number_format($result->price, 2) }}
+                                                            </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                           
-                                                            <div class="text-sm text-gray-900">{{ $result->quantity * $result->price }}</div>
-                                                            
+                                                            <div class="text-sm text-gray-900">
+                                                                Ksh.
+                                                                {{ number_format(($result->quantity * $result->price), 2) }}
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <!-- More people... -->
                                                 </tbody>
+
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5" scope="col"
+                                                            class="text-right px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider actions">
+                                                            <h6>
+                                                                <strong style="color: black">Total:
+                                                                    Ksh.{{ number_format(\Cart::getTotal(), 2)}}</strong>
+                                                            </h6>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
                                                 @endforeach
-                                               
+
                                             </table>
 
                                         </div>

@@ -7,20 +7,20 @@
 </section>
 
 @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show m-5" role="alert">
-        {{ session('success') }}
+<div class="alert alert-success alert-dismissible fade show m-5" role="alert">
+    {{ session('success') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    </div>
-    
+</div>
+
 @elseif(session('updated'))
-    <div class="alert alert-success alert-dismissible fade show m-5" role="alert">
-        {{ session('updated') }}
+<div class="alert alert-success alert-dismissible fade show m-5" role="alert">
+    {{ session('updated') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
-    </div>
+</div>
 @endif
 
 <div class="this-progress-bar">
@@ -33,11 +33,12 @@
 </div>
 
 <section id="cart" class="section-p1">
+
     @if($cart->count() > 0)
     <table width="100%">'
         <thead>
             <tr>
-                <td>#</td>
+                <td>ID.</td>
                 <td>Image</td>
                 <td>Name</td>
                 <td>Price</td>
@@ -58,7 +59,7 @@
                     <img src="/assets/images/img/products/{{ $details->model->item_img }}" alt="">
                 </td>
                 <td>{{ $details['name'] }}</td>
-                <td>{{ number_format($details['price'],2) }}</td>
+                <td>Ksh. {{ number_format($details['price'],2) }}</td>
                 <td>
 
                     <form action="{{ route('cart.update',$details->id) }}" method="post">
@@ -69,7 +70,7 @@
                         <!-- <input class="btn btn-sm btn-primary" type="submit" value="save"> -->
                     </form>
                 </td>
-                <td>{{ number_format(\Cart::get($details->id)->getPriceSum(), 2) }}</td>
+                <td>Ksh. {{ number_format(\Cart::get($details->id)->getPriceSum(), 2) }}</td>
                 <td>
 
                     <a class="btn btn-danger remove-from-cart" href="{{ route('cart.remove', $details->id) }}"
@@ -88,7 +89,7 @@
             <tr>
                 <td colspan="5" scope="col"
                     class="text-right px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider actions">
-                    <h6><strong style="color: black">Total: Ksh.{{ \Cart::getTotal()}}</strong></h6>
+                    <h6><strong style="color: black">Total: Ksh.{{ number_format(\Cart::getTotal(), 2) }}</strong></h6>
                 </td>
             </tr>
             <tr>
