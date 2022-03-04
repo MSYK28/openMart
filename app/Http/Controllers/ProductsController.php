@@ -32,7 +32,7 @@ class ProductsController extends Controller
          $users = User::whereHas('roles',
             function($q){
             $q->whereIn('name', ['user']);
-        })->get();
+        })->withTrashed()->get();
           //$users = User::all();
 
         return view('admin.datatables.usersTable',['users'=>$users])->withUser($user);

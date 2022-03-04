@@ -269,7 +269,11 @@ class AdminController extends Controller
 
         $products = Items::findOrFail($request->id);
 
-        $products->item_img= $filename;
+        if($request->hasFile('product_img')){
+
+            $products->item_img= $filename;
+        }
+
         $products->name= $request->product_name;
         $products->quantity= $request->quantity;
         $products->description=$request->description;
