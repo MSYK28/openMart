@@ -31,7 +31,7 @@ class AdminController extends Controller
 
     // public function editproduct() {
     //     return view('admin.editProduct');
-    // }
+    // }e
 
     public function user_view(){
 
@@ -132,8 +132,7 @@ class AdminController extends Controller
 
 
        Session::flash('success','Product added successfull');
-       return redirect()->back();
-
+       return redirect('/admin/datatables/')->with('status', 'Product added');
    }
 
     public function passwordEdit($id){
@@ -269,7 +268,11 @@ class AdminController extends Controller
 
         $products = Items::findOrFail($request->id);
 
-        $products->item_img= $filename;
+        if($request->hasFile('product_img')){
+
+            $products->item_img= $filename;
+        }
+
         $products->name= $request->product_name;
         $products->quantity= $request->quantity;
         $products->description=$request->description;

@@ -167,7 +167,7 @@ class ShoppingCartController extends Controller
             $BusinessShortCode = env('MPESA_STK_SHORTCODE');
             $password = 'MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIwMzAyMTQwNDQw';
             $TransactionType = 'CustomerPayBillOnline';
-            $Amount = '1';
+            $Amount = $request->input('grand_total');
             $PartyA = $phoneNumber;
             $PartyB = env('MPESA_STK_SHORTCODE');
             $PhoneNumber = $phoneNumber;
@@ -202,7 +202,7 @@ class ShoppingCartController extends Controller
         $order->location = $request->input('location');
         $order->payment_method = $request->input('fav_language');
 
-        $order->grand_total = $request->input('grand_total');;
+        $order->grand_total = $request->input('grand_total');
         $order->user_id = auth()->id();
 
         $order->save();

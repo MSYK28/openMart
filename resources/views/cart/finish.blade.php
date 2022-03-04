@@ -166,6 +166,7 @@
                                                     </tr>
                                                     <!-- More people... -->
                                                 </tbody>
+
                                                 <tfoot>
                                                     <tr>
                                                         <td colspan="5" scope="col"
@@ -178,6 +179,7 @@
                                                     </tr>
                                                 </tfoot>
                                                 @endforeach
+
                                             </table>
 
                                         </div>

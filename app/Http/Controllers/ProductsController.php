@@ -61,7 +61,7 @@ class ProductsController extends Controller
 
     public function datatables()
     {
-         $products = Items::all();
+         $products = Items::withTrashed()->get();
 
         return view('admin.datatables.productsTable', compact('products'));
     }

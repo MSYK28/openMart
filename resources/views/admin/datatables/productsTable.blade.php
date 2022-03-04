@@ -111,9 +111,15 @@
                                         <a href="{{ "/admin/editProduct/".$product['id'] }}"
                                             class="btn btn-sm btn-primary">Edit</a>
                                     </td>
+                                    @if($product->deleted_at == null)
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="btn btn-sm btn-danger" type="submit">Delete</a>
+                                        <a href="{{ "/admin/product/disable/".$product['id'] }}" onclick="return confirm('Are You Sure You want to Disable Product?')" class="btn btn-sm btn-danger"  type="submit">Delete</a>
                                     </td>
+                                    @else
+                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{{ "/admin/product/restore/".$product['id'] }}" onclick="return confirm('Are You Sure You want to Restore Disabled Product?')" class="btn btn-sm btn-success"  type="submit">Restore</a>
+                                    </td>
+                                    @endif
                             </tr>
                             @endforeach
 
