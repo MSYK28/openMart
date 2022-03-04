@@ -163,7 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
 
         /*
          * Package Service Providers...
@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        \Safaricom\Mpesa\MpesaServiceProvider::class,
         // Darryldecode\Cart\CartServiceProvider::class,
 
     ],
@@ -195,5 +196,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
          'Image' => Intervention\Image\Facades\Image::class,
+        'Mpesa'=> \Safaricom\Mpesa\MpesaServiceProvider::class,
     ])->toArray(),
 ];
