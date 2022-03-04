@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <section id="prodetails" class="section-p1">
     <div class="single-pro-image">
         <img src="/assets/images/img/products/f1.jpg" width="100%" id="MainImg" alt="">
@@ -26,7 +25,7 @@
     <div class="single-pro-details">
         <h6>Home/T-shirt</h6>
         <h4>{{$products->name}}</h4>
-        <h2>Ksh. {{$products->price}} </h2>
+        <h2>Ksh. {{ $products->price }} </h2>
         <select name="" id="">
             <option value="">Select Size</option>
             <option value="">Small</option>

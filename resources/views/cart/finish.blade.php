@@ -89,7 +89,7 @@
                                             <strong>{{ Auth::user()->name }}</strong><br>
                                             @foreach ($orders as $order)
 
-                                            <div>{{ $order->location }}</div>
+                                            <div>Location: {{ $order->location }}</div>
                                             @endforeach
 
                                         </address>
@@ -98,10 +98,10 @@
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div class="invoice-details">
                                         <div class="invoice-num">
-                                            <div>{{ $session }}</div>
+                                            <div>Receipt No.{{ $session }}</div>
                                             @foreach ($orders as $order)
 
-                                            <div>{{ $order->created_at }}</div>
+                                            <div>Date: {{ $order->created_at }}</div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                            
+
                                             <table class="min-w-full divide-y divide-gray-200" id="table_id">
                                                 <thead class="bg-gray-50">
                                                     <tr>
@@ -129,7 +129,7 @@
                                                         </th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Price
+                                                            Unit Price
                                                         </th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -139,35 +139,40 @@
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                     @foreach ($receipt as $orderlist)
+                                                    @foreach($results as $result)
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="ml-4">
-                                                                @foreach($results as $result)
-                                                            <div class="text-sm font-medium text-gray-900">
-                                                                   {{ $result->name }}</div>
-                                                            @endforeach
-                                                               
+                                                                
+                                                                <div class="text-sm font-medium text-gray-900">
+                                                                    {{ $result->name }}</div>
+                                                                
+
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">  @php $quantity= $orderlist->quantity; echo $quantity; @endphp</div>
+                                                            <div class="text-sm text-gray-900"> @php $quantity=
+                                                                $orderlist->quantity; echo $quantity; @endphp</div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             @foreach($results as $result)
-                                                            <div class="text-sm text-gray-900"> @php $price= $result->price; echo $price; @endphp</div>
+                                                            <div class="text-sm text-gray-900"> @php $price=
+                                                                $result->price; echo $price; @endphp</div>
                                                             @endforeach
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                           
-                                                            <div class="text-sm text-gray-900">@php $total = $price * $quantity; echo $total; @endphp</div>
-                                                            
+
+                                                            <div class="text-sm text-gray-900">@php $total = $price *
+                                                                $quantity; echo $total; @endphp</div>
+
                                                         </td>
                                                     </tr>
                                                     <!-- More people... -->
                                                 </tbody>
-                                                 @endforeach
+                                                @endforeach
+                                                @endforeach
                                             </table>
-                                           
+
                                         </div>
 
                                     </div>
