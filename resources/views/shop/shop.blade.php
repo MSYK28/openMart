@@ -7,9 +7,12 @@
 </section>
 
 @if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
+    <div class="alert alert-success alert-dismissible fade show m-5" role="alert">
+        {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
 @endif
 
 <section id="product1" class="section-p1">
@@ -17,7 +20,8 @@
         @foreach ($products as $product)
 
         <div class="pro">
-            <a href="{{"/product/".$product['id'] }}"> <img src="/assets/images/img/products/{{ $product->item_img }}" alt=""></a>
+            <a href="{{"/product/".$product['id'] }}"> <img src="/assets/images/img/products/{{ $product->item_img }}"
+                    alt=""></a>
             <div class="des">
                 <span>{{ $product->brand }}</span>
                 <h5>{{ $product->name }}</h5>
@@ -28,7 +32,7 @@
                     <i class='bx bxs-star'></i>
                     <i class='bx bxs-star'></i>
                 </div>
-                <h4>Ksh. {{ number_format($product->price / 100,2) }}</h4>
+                <h4>Ksh. {{ number_format($product->price ,2) }}</h4>
             </div>
 
             @if ($cart->where('id', $product->id)->count())
@@ -38,7 +42,8 @@
                 @else
                 <a href=""><i class='bx bx-cart-alt cart'></i></a>
 
-                <a href="{{ route('cart.add', $product->id) }}" class="btn btn-warning btn-block text-center" role="button">
+                <a href="{{ route('cart.add', $product->id) }}" class="btn btn-warning btn-block text-center"
+                    role="button">
                     Add to cart
                 </a>
                 @endif

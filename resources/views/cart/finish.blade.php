@@ -89,7 +89,7 @@
                                             <strong>{{ Auth::user()->name }}</strong><br>
                                             @foreach ($orders as $order)
 
-                                            <div>{{ $order->location }}</div>
+                                            <div>Location: {{ $order->location }}</div>
                                             @endforeach
 
                                         </address>
@@ -98,10 +98,10 @@
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div class="invoice-details">
                                         <div class="invoice-num">
-                                            <div>{{ $session }}</div>
+                                            <div>Receipt No.{{ $session }}</div>
                                             @foreach ($orders as $order)
 
-                                            <div>{{ $order->created_at }}</div>
+                                            <div>Date: {{ $order->created_at }}</div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@
                                                         </th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Price
+                                                            Unit Price
                                                         </th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -165,7 +165,8 @@
                                                     </tr>
                                                     <!-- More people... -->
                                                 </tbody>
-                                                 @endforeach
+                                                @endforeach
+                                                @endforeach
                                             </table>
 
                                         </div>

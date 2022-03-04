@@ -23,8 +23,8 @@ class VoucherTableSeeder extends Seeder
 
             Voucher::create([
             'code' => 'DEF456',
-            'type' => 'percent',
-            'percent_off' => 50,
+            'type' => 'fixed',
+            'value' => 500,
         ]);
     }
 }

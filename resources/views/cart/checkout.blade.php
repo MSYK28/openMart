@@ -59,6 +59,7 @@
 
             </form>
         </div>
+        <div id="paypal-button-container"></div>
     </div>
 
     <div id="subtotal">
@@ -68,7 +69,7 @@
         <table>
             <tr>
                 <td>Cart Subtotal</td>
-                <td>Ksh. @php $cartSubTotal= \Cart::getTotal(); echo $cartSubTotal @endphp </td>
+                <td>@php $cartSubTotal= \Cart::getTotal(); echo $cartSubTotal @endphp </td>
             </tr>
             <tr>
                 <td>Shipping</td>
@@ -147,6 +148,7 @@
                         Paypal
                     </label>
                 </div>
+                <div id="paypal-button-container"></div>
             </div>
 
             @if (session()->has('coupon'))
@@ -184,4 +186,12 @@
         </form>
     </div>
 </section>
+@endsection
+
+
+@section('scripts')
+
+<script>
+
+</script>
 @endsection

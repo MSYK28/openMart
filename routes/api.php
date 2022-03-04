@@ -17,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix'=>'paypal'], function(){
+    Route::post('/order/create',[\App\Http\Controllers\Front\PaypalPaymentController::class,'create']);
+    Route::post('/order/capture/',[\App\Http\Controllers\Front\PaypalPaymentController::class,'capture']);
+});
+
 Route::post('v1/access/token', 'ShoppingCartController@generateAccessToken');
 Route::post('v1/hlab/stk/push', 'ShoppingCartController@customerMpesaSTKPush');

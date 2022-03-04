@@ -45,7 +45,7 @@ class ProductsController extends Controller
       $users = User::findOrFail($id);
       $users->delete();
 
-      Session::flash('msg','User successfully Disabled');
+      Session::flash('no-msg','User successfully Disabled');
       return redirect()->back();
      
     }

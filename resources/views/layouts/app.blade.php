@@ -16,6 +16,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{config('services.paypal.client_id')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 
@@ -84,13 +85,10 @@
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
 
                         @if(\Cart::getcontent()->count() > 0)
-
                         <li>
                             <a href="{{ route('cart.cart') }}">
                                 <i style="font-size:20px" class='bx bx-cart'></i>
-
                                 Cart <span class="badge badge-warning">{{ \Cart::getcontent()->count() }}</span>
-
                             </a>
                         </li>
                         @endif

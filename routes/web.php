@@ -38,8 +38,6 @@ Route::get('/wishlist/view', [WishlistController::class, 'index'])->name('wishli
 Route::post('/wishlist/', [WishlistController::class, 'store'])->name('wishlist.add');
 
 
-
-
 //SHOPPING CONTROLLER
 Route::get('/', [ShoppingCartController::class, 'hiquipviewindex'])->name('index');
 Route::get('/shop', [ShoppingCartController::class, 'hiquipview'])->name('shop');
@@ -76,7 +74,7 @@ Route::prefix('admin/datatables')->group(
     function(){
         Route::get('/usersTable', [App\Http\Controllers\ProductsController::class, 'users'])->name('admin.datatables.usersTable');
         Route::get('/chart', [App\Http\Controllers\ProductsController::class, 'chart'])->name('admin.datatables.chart');
-        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable')->name('admin.products');
+        Route::get('/', [App\Http\Controllers\ProductsController::class, 'datatables'])->name('admin.datatables.productsTable')->name('admin.products');;
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
 
@@ -87,6 +85,7 @@ Route::prefix('admin/datatables')->group(
 Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
 Route::get('/contact', function () {return view('contact');});
+
 Route::get('/product', function () {return view('shop.product');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
 

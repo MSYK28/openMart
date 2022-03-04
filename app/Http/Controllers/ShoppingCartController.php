@@ -63,7 +63,7 @@ class ShoppingCartController extends Controller
        \Cart::add(
             $product->id,
             $product->name,
-            $product->price / 100,
+            $product->price ,
             1,
             array(),
          )->associate('App\Models\Items');
@@ -220,27 +220,24 @@ class ShoppingCartController extends Controller
         }
                     //send email to customer
 
-                    if($order->save() == true){
-                        $recepient = Auth::user()->email;
+        if($order->save() == true){
+            $recepient = Auth::user()->email;
 
-                        Mail::to($recepient)->send(new OrderMail($checkout));
-                        Session::flash('msg','Order successful');
+            Mail::to($recepient)->send(new OrderMail($checkout));
+            Session::flash('msg','Order successful');
 
-                    }else{
-                        echo "Error";
+        }else{
+            echo "Error";
 
-                    }
+        }
                     //empty cart
-                   \Cart::clear();
+        \Cart::clear();
                     //clear coupon
-                    session()->forget('coupon');
+        session()->forget('coupon');
 
-                    Session::put('order',$order->id);
-
+        Session::put('order',$order->id);
 
         return redirect('/finish');
-
-
     }
 
     public function receipt(){
