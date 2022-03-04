@@ -15,7 +15,9 @@ use Image;
 use File;
 use Session;
 use DB;
+use Illuminate\Support\Facades\Log;
 use Safaricom\Mpesa\Mpesa;
+
 
 class ShoppingCartController extends Controller
 {
@@ -248,15 +250,32 @@ class ShoppingCartController extends Controller
                     $orders = Order::where('id', $session)->get();
 
                     //$receipt = DB::select('select * from users where id = :id', ['id' => $session]);
-                    $receipt = DB::table('order_lists')->where('order_id', $session)->get();
+
+                    // $receipt = DB::table('order_lists')->where('order_id', $session)->get();
+                    
                     $results = DB::table('items')
                                 ->join('order_lists', 'items.id', '=', 'order_lists.item_id')
                                 ->where('order_lists.order_id', $session)
                                 ->get();
 
-                    //Session::flush();
+                    foreach ($results as $result) {
+                        $quantity = DB::table('order_lists')->where('order_id', $session)->where('item_id', $result->item_id)->first();
+                        $result->quantity = $quantity->quantity;
+                    }
 
-                    return view('cart.finish', compact('receipt', 'session', 'orders', 'results'));
+
+                            
+
+
+                    //Session::flush();
+                    // $mi = new MultipleIterator();
+                    // $mi->attachIterator(new ArrayIterator($results));
+                    // $mi->attachIterator(new ArrayIterator($receipt));
+                    // foreach($mi as list($recepient, receipt)) {
+                    //     var_dump($results,$receipt);
+                    //}
+
+                    return view('cart.finish', compact('session', 'orders', 'results'));
 
     }
 
