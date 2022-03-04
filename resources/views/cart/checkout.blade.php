@@ -144,8 +144,8 @@
                     </label><br>
 
                     <label for="visa" class="form-group">
-                        <input type="radio" id="visa" name="fav_language" value="visa">
-                        VISA/CARD
+                        <input type="radio" id="visa" name="fav_language" value="paypal">
+                        Paypal
                     </label>
                 </div>
                 <div id="paypal-button-container"></div>
@@ -169,7 +169,7 @@
                 <input type="hidden" name="grand_total" value="{{ $total }}">
             </div>
             <div class="pt-4">
-                <button type="submit" style="font-size: 14px; 
+                <button type="submit" style="font-size: 14px;
                             color: #000;
                             font-weight: 600;
                             padding: 15px 30px;

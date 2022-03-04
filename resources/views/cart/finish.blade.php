@@ -138,33 +138,29 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200">
-                                                    @foreach ($receipt as $orderlist)
-                                                    @foreach($results as $result)
+                                                     @foreach($results as $result)
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="ml-4">
-                                                                
-                                                                <div class="text-sm font-medium text-gray-900">
-                                                                    {{ $result->name }}</div>
-                                                                
+                                                            
+
+                                                            <div class="text-sm font-medium text-gray-900">
+                                                                 {{ $result->name }}  </div>
 
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900"> @php $quantity=
-                                                                $orderlist->quantity; echo $quantity; @endphp</div>
+                                                            <div class="text-sm text-gray-900">  {{ $result->quantity}}</div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            @foreach($results as $result)
-                                                            <div class="text-sm text-gray-900"> @php $price=
-                                                                $result->price; echo $price; @endphp</div>
-                                                            @endforeach
+                                                            
+                                                            <div class="text-sm text-gray-900"> {{ $result->price }}</div>
+                                                            
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-
-                                                            <div class="text-sm text-gray-900">@php $total = $price *
-                                                                $quantity; echo $total; @endphp</div>
-
+                                                           
+                                                            <div class="text-sm text-gray-900">{{ $result->quantity * $result->price }}</div>
+                                                            
                                                         </td>
                                                     </tr>
                                                     <!-- More people... -->

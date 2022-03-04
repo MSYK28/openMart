@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\WishlistController;
 use GuzzleHttp\Middleware;
+use App\Http\Controllers\MpesaController;
 
 
 /*
@@ -77,6 +78,9 @@ Route::prefix('admin/datatables')->group(
         Route::get('/ordersTable', [App\Http\Controllers\ProductsController::class, 'orders'])->name('admin.datatables.ordersTable');
 });
 
+//Mpesa
+
+
 // STATIC PAGES
 Route::get('/about', function () {return view('about');});
 Route::get('/blog', function () {return view('blog');});
@@ -84,4 +88,5 @@ Route::get('/contact', function () {return view('contact');});
 
 Route::get('/product', function () {return view('shop.product');});
 Route::get('/admin/editProduct', function () {return view('admin.editProduct');});
+
 // Route::get('/product/{post}',[App\Http\Controllers\PostsController::class, 'show']);

@@ -115,9 +115,9 @@ class AdminController extends Controller
         if($request->hasFile('image')){
             $product_img = $request->file('image');
             $filename = time() . '.' . $product_img->getClientOriginalExtension();
-            Image::make($product_img)->resize(400,400)->save( public_path('assets/images/img/products/' . $filename) );
+            Image::make($product_img)->resize(400,400)->save( public_path('assets/images/img/products/' . $filename ) );
         }
-        
+
 
         //store product
         $product = Items::create([
@@ -266,13 +266,10 @@ class AdminController extends Controller
 
         }
 
-        
+
         $products = Items::findOrFail($request->id);
-        if($request->hasFile('product_img')){
 
         $products->item_img= $filename;
-        }
-
         $products->name= $request->product_name;
         $products->quantity= $request->quantity;
         $products->description=$request->description;
