@@ -167,6 +167,7 @@ class ShoppingCartController extends Controller
             $BusinessShortCode = env('MPESA_STK_SHORTCODE');
             $password = 'MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIwMzAyMTQwNDQw';
             $TransactionType = 'CustomerPayBillOnline';
+            //$Amount = $request->input('grand_total');
             $Amount = $request->input('grand_total');
             $PartyA = $phoneNumber;
             $PartyB = env('MPESA_STK_SHORTCODE');
@@ -192,8 +193,7 @@ class ShoppingCartController extends Controller
                 $TransactionDesc,
                 $Remarks);
 
-
-
+            //return $stkPushSimulation;
         }
 
         $order = new Order();
@@ -261,56 +261,8 @@ class ShoppingCartController extends Controller
                     }
 
 
-                            
-
-
-                    //Session::flush();
-                    // $mi = new MultipleIterator();
-                    // $mi->attachIterator(new ArrayIterator($results));
-                    // $mi->attachIterator(new ArrayIterator($receipt));
-                    // foreach($mi as list($recepient, receipt)) {
-                    //     var_dump($results,$receipt);
-                    //}
-
                     return view('cart.finish', compact('session', 'orders', 'results'));
 
     }
 
-
-
-    public function stkpush(Request $request){
-        $phoneNumber= "254769584101";
-
-        $timestamp = date('YmdHis');
-        $BusinessShortCode = env('MPESA_STK_SHORTCODE');
-        $password = 'MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIwMzAyMTQwNDQw';
-        $TransactionType = 'CustomerPayBillOnline';
-        $Amount = '1';
-        $PartyA = $phoneNumber;
-        $PartyB = env('MPESA_STK_SHORTCODE');
-        $PhoneNumber = $phoneNumber;
-        $CallBackURL = 'https://mydomain.com/path';
-        $AccountReference = 'Adibas';
-        $TransactionDesc = 'Give me all your money ';
-        $LipaNaMpesaPasskey=env('MPESA_PASSKEY');
-        $Remarks='successful';
-
-        $mpesa= new \Safaricom\Mpesa\Mpesa();
-
-        $stkPushSimulation=$mpesa->STKPushSimulation(
-            $BusinessShortCode,
-            $LipaNaMpesaPasskey,
-            $TransactionType,
-            $Amount,
-            $PartyA,
-            $PartyB,
-            $PhoneNumber,
-            $CallBackURL,
-            $AccountReference,
-            $TransactionDesc,
-            $Remarks);
-
-
-        return $stkPushSimulation;
-    }
 }
