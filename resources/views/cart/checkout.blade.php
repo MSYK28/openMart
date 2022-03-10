@@ -166,7 +166,7 @@
 
             @endif
             <div>
-                <input type="hidden" name="grand_total" value="{{ number_format($total, 2) }}">
+                <input type="hidden" name="grand_total" value="{{ $total }}">
             </div>
             <div class="pt-4">
                 <button type="submit" class="btn btn-warning" >
